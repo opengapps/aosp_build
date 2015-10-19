@@ -1,0 +1,5 @@
+# These artifacts are from the auto generation script. They're safe to ignore.
+modules/product.mk
+modules/product_copy_files.txt
+modules/app_densities.txt
+modules/README
