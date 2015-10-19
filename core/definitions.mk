@@ -19,4 +19,4 @@ $(addprefix @,$(shell zipinfo -1 $(2) | grep "$(call get-lib-search-path, $(1))"
 endef
 
 BUILD_GAPPS_PREBUILT_APK := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_apk.mk
-
+BUILD_GAPPS_PREBUILT_SHARED_LIBRARY := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_shared_library.mk
