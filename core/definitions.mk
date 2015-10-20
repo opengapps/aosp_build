@@ -7,7 +7,7 @@ define get-allowed-api-levels-regex
 endef
 
 define find-apk-for-pkg
-$(firstword $(shell find $(GAPPS_SOURCES_PATH)/$(1) -regextype posix-egrep -regex ".*/$(2)/$(call get-allowed-api-levels-regex)/nodpi/.*\.apk" | sort -r))
+$(shell $(GAPPS_BUILD_SYSTEM_PATH)/find_apk.sh "$(GAPPS_SOURCES_PATH)" $(PLATFORM_SDK_VERSION) $(2) $(1))
 endef
 
 define get-lib-search-path

@@ -6,7 +6,6 @@ GAPPS_FILES := $(GAPPS_DEVICE_FILES_PATH)/opengapps-files.mk
 
 include $(GAPPS_BUILD_SYSTEM_PATH)/definitions.mk
 
-$(info included config.mk)
 # Device should define their GAPPS_VARIANT in device/manufacturer/product/BoardConfig.mk
 GAPPS_VARIANT ?= stock
 GAPPS_VARIANT_EVAL := $(call get-gapps-variant,$(GAPPS_VARIANT))
