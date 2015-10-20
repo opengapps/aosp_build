@@ -57,8 +57,12 @@ PRODUCT_PACKAGES += GoogleCamera \
                     PrebuiltBugle
 
 ifneq ($(filter $(GAPPS_VARIANT),super),)
-PRODUCT_PACKAGES += AndroidForWork \
-                    Wallet \
+
+ifeq ($(call get-allowed-api-levels),23)
+PRODUCT_PACKAGES += AndroidForWork
+endif
+
+PRODUCT_PACKAGES += Wallet \
                     DMAgent \
                     GoogleEarth \
                     GCS \
