@@ -13,7 +13,7 @@ and add the following towards the end:
 ```xml
 <remote name="opengapps" fetch="https://github.com/opengapps/"  />
 
-<project path="vendor/google/build" name="opengapps_aosp_build" revision="master" remote="opengapps" />
+<project path="vendor/google/build" name="aosp_build" revision="master" remote="opengapps" />
 <project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="opengapps" />
 <!-- If you need other/additional targets, follow the same template: -->
 <project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="opengapps" />
