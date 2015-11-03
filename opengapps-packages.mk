@@ -1,3 +1,4 @@
+include vendor/google/build/config.mk
 include $(GAPPS_FILES)
 
 PRODUCT_PACKAGES += GoogleBackupTransport \
