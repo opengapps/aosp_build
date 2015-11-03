@@ -22,7 +22,7 @@ PRODUCT_COPY_FILES += \
                       $(GAPPS_SOURCES_ALL_PATH)/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/right_eye-y0-yi45-p0-pi45-r0-ri20.lg_32-3-tree7-wmd.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/right_eye-y0-yi45-p0-pi45-r0-ri20.lg_32-3-tree7-wmd.bin \
                       $(GAPPS_SOURCES_ALL_PATH)/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/left_eye-y0-yi45-p0-pi45-r0-ri20.lg_32-tree7-wmd.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/left_eye-y0-yi45-p0-pi45-r0-ri20.lg_32-tree7-wmd.bin \
                       $(GAPPS_SOURCES_ALL_PATH)/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/landmark_group_meta_data.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/landmark_group_meta_data.bin \
-                      $(GAPPS_SOURCES_ALL_PATH)/vendor/pittpatt/models/recognition/face.face.y0-y0-71-N-tree_7-wd.bin:system/vendor/pittpatt/models/recognition/face.face.y0-y0-71-N-tree_7-wmd.bin \
+                      $(GAPPS_SOURCES_ALL_PATH)/vendor/pittpatt/models/recognition/face.face.y0-y0-71-N-tree_7-wmd.bin:system/vendor/pittpatt/models/recognition/face.face.y0-y0-71-N-tree_7-wmd.bin \
                       \
                       $(GAPPS_SOURCES_ALL_PATH)/usr/srec/en-US/dict:system/usr/srec/en-US/dict \
                       $(GAPPS_SOURCES_ALL_PATH)/usr/srec/en-US/offensive_word_normalizer.mfar:system/usr/srec/en-US/offensive_word_normalizer.mfar \
