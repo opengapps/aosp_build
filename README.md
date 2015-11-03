@@ -23,13 +23,13 @@ and add the following towards the end:
 
 In your `device/manufacturer/product/BoardConfig.mk` file, towards the end, add:
 ```makefile
-OPENGAPPS_VARIANT := <variant>
+GAPPS_VARIANT := <variant>
 ```
 
 where `<variant>` is one of the [package types](https://github.com/opengapps/opengapps/wiki/Package-Comparison) in lowercase. E.g:
 
 ```
-OPENGAPPS_VARIANT := stock
+GAPPS_VARIANT := stock
 ```
 
 Defaults to `stock` if the value is not set.
