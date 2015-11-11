@@ -13,18 +13,18 @@ PRODUCT_PACKAGES += GoogleBackupTransport \
                     Phonesky \
                     GoogleCalendarSyncAdapter
 
-ifneq ($(filter $(GAPPS_VARIANT),nano),) # require at least nano
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
 PRODUCT_PACKAGES += FaceLock \
                     Velvet
 
-ifneq ($(filter $(GAPPS_VARIANT),micro),) # require at least micro
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),micro),) # require at least micro
 PRODUCT_PACKAGES += CalendarGooglePrebuilt \
                     PrebuiltExchange3Google \
                     PrebuiltGmail \
                     GoogleHome \
                     GoogleTTS
 
-ifneq ($(filter $(GAPPS_VARIANT),mini),) # require at least mini
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),mini),) # require at least mini
 PRODUCT_PACKAGES += GoogleHome \
                     GoogleTTS \
                     PrebuiltDeskClockGoogle \
@@ -34,7 +34,7 @@ PRODUCT_PACKAGES += GoogleHome \
                     Photos \
                     YouTube
 
-ifneq ($(filter $(GAPPS_VARIANT),full),) # require at least full
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),full),) # require at least full
 PRODUCT_PACKAGES += Books \
                     Chrome \
                     CloudPrint2 \
@@ -52,12 +52,12 @@ PRODUCT_PACKAGES += Books \
                     EditorsSlides \
                     talkback
 
-ifneq ($(filter $(GAPPS_VARIANT),stock),) # require at least stock
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # require at least stock
 PRODUCT_PACKAGES += GoogleCamera \
                     LatinImeGoogle \
                     PrebuiltBugle
 
-ifneq ($(filter $(GAPPS_VARIANT),super),)
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
 
 ifeq ($(call get-allowed-api-levels),23)
 PRODUCT_PACKAGES += AndroidForWork

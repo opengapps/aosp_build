@@ -21,7 +21,7 @@ and add the following towards the end:
 
 **2. Set the desired OpenGapps variant**
 
-In your `device/manufacturer/product/BoardConfig.mk` file, towards the end, add:
+In your `device/manufacturer/product/device.mk` file, in the beginning, add:
 ```makefile
 GAPPS_VARIANT := <variant>
 ```
@@ -31,8 +31,6 @@ where `<variant>` is one of the [package types](https://github.com/opengapps/ope
 ```
 GAPPS_VARIANT := stock
 ```
-
-Defaults to `stock` if the value is not set.
 
 **3. Include the opengapps-packages.mk file**
 
