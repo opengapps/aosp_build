@@ -1,4 +1,3 @@
-# Auto-generated Makefile from OpenGapps. Do not modify.
 LOCAL_PATH := .
 include $(CLEAR_VARS)
 LOCAL_MODULE := Wallet

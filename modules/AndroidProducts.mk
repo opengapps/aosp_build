@@ -1,4 +1,3 @@
-# Auto-generated Makefile from OpenGapps. Do not modify.
 PRODUCT_COPY_FILES += vendor/opengapps/sources/all/etc/permissions/com.google.widevine.software.drm.xml:system/etc/permissions/com.google.widevine.software.drm.xml
 PRODUCT_COPY_FILES += vendor/opengapps/sources/all/etc/permissions/com.google.android.maps.xml:system/etc/permissions/com.google.android.maps.xml
 PRODUCT_COPY_FILES += vendor/opengapps/sources/all/etc/permissions/com.google.android.media.effects.xml:system/etc/permissions/com.google.android.media.effects.xml
