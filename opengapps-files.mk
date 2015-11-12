@@ -11,7 +11,7 @@ PRODUCT_COPY_FILES += $(GAPPS_SOURCES_ALL_PATH)/etc/permissions/com.google.widev
                       $(GAPPS_SOURCES_ALL_PATH)/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar
 
 # Pico and higher
-ifneq ($(filter $(GAPPS_VARIANT),pico),)
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),pico),)
 PRODUCT_COPY_FILES += \
                       $(GAPPS_SOURCES_ALL_PATH)/vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-y-r.8.1.bin:system/vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-y-r.8.1.bin \
                       $(GAPPS_SOURCES_ALL_PATH)/vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-r.8.1.bin:system/vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-r.8.1.bin \
