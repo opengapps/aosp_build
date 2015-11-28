@@ -3,5 +3,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := CalendarGooglePrebuilt
 LOCAL_PACKAGE_NAME := com.google.android.calendar
 LOCAL_MODULE_PATH := $(PRODUCT_OUT)/system/app
+LOCAL_OVERRIDES_PACKAGES := GoogleCalendarSyncAdapter
 
 include $(BUILD_GAPPS_PREBUILT_APK)
