@@ -58,3 +58,16 @@ PRODUCT_COPY_FILES += vendor/opengapps/sources/all/usr/srec/en-US/endpointer_mod
 PRODUCT_COPY_FILES += vendor/opengapps/sources/all/usr/srec/en-US/semantics.pumpkin:system/usr/srec/en-US/semantics.pumpkin
 PRODUCT_COPY_FILES += vendor/opengapps/sources/all/usr/srec/en-US/metadata:system/usr/srec/en-US/metadata
 PRODUCT_COPY_FILES += vendor/opengapps/sources/all/usr/srec/en-US/contacts.abnf:system/usr/srec/en-US/contacts.abnf
+
+vendor/opengapps/sources/arm/lib/%.so: FORCE
+	@for i in `seq 19 $(PLATFORM_SDK_VERSION)`; do \
+	    [ -e vendor/opengapps/sources/arm/lib/$$i/$(@F) ] && \
+	        ln -f -s $$i/$(@F) $@; \
+	done
+
+vendor/opengapps/sources/arm/vendor/lib/%.so: FORCE
+	@for i in `seq 19 $(PLATFORM_SDK_VERSION)`; do \
+	    [ -e vendor/opengapps/sources/arm/vendor/lib/$$i/$(@F) ] && \
+	        ln -f -s $$i/$(@F) $@; \
+	done
+.PHONY: FORCE
