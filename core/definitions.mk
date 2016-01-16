@@ -30,5 +30,16 @@ $(if $(filter $(1),super),pico nano micro mini full stock super) \
 )
 endef
 
+define gapps-all-files-under
+$(patsubst ./%,%, \
+	$(shell cd $(GAPPS_SOURCES_PATH); cd $(1); \
+		find -L $(2) -type f -and -not -name ".*") \
+)
+endef
+
+define gapps-copy-to-system
+$(foreach F,$(call gapps-all-files-under, $(1), $(2)),$(join $(GAPPS_SOURCES_PATH)/,$(1))/$F:system/$F)
+endef
+
 BUILD_GAPPS_PREBUILT_APK := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_apk.mk
 BUILD_GAPPS_PREBUILT_SHARED_LIBRARY := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_shared_library.mk
