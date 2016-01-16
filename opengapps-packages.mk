@@ -59,7 +59,7 @@ PRODUCT_PACKAGES += GoogleCamera \
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
 
-ifeq ($(call get-allowed-api-levels),23)
+ifneq ($(filter $(call get-allowed-api-levels),23),)
 PRODUCT_PACKAGES += AndroidForWork
 endif
 
