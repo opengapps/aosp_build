@@ -4,4 +4,8 @@ LOCAL_MODULE := LatinImeGoogle
 LOCAL_PACKAGE_NAME := com.google.android.inputmethod.latin
 LOCAL_MODULE_PATH := $(PRODUCT_OUT)/system/app
 
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # overwrite if stock/super
+LOCAL_OVERRIDES_PACKAGES := LatinIME
+endif
+
 include $(BUILD_GAPPS_PREBUILT_APK)
