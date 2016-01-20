@@ -5,7 +5,7 @@ LOCAL_PACKAGE_NAME := com.android.chrome
 LOCAL_MODULE_PATH := $(PRODUCT_OUT)/system/app
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # overwrite Browser if stock/super
-LOCAL_OVERRIDES_PACKAGES := Browser
+LOCAL_OVERRIDES_PACKAGES := Browser BrowserProviderProxy Chromium
 endif
 
 include $(BUILD_GAPPS_PREBUILT_APK)
