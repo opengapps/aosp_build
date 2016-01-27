@@ -2,7 +2,6 @@ LOCAL_PATH := .
 include $(CLEAR_VARS)
 LOCAL_MODULE := PrebuiltExchange3Google
 LOCAL_PACKAGE_NAME := com.google.android.gm.exchange
-LOCAL_MODULE_PATH := $(PRODUCT_OUT)/system/app
 
 LOCAL_OVERRIDES_PACKAGES := Exchange2
 
