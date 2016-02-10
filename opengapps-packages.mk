@@ -25,7 +25,8 @@ PRODUCT_PACKAGES += CalendarGooglePrebuilt \
                     GoogleTTS
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),mini),) # require at least mini
-PRODUCT_PACKAGES += GoogleHome \
+PRODUCT_PACKAGES += CalculatorGoogle \
+                    GoogleHome \
                     GoogleTTS \
                     PrebuiltDeskClockGoogle \
                     PlusOne \
@@ -59,6 +60,7 @@ DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/stock
 PRODUCT_PACKAGES += GoogleCamera \
                     LatinImeGoogle \
                     PrebuiltBugle \
+                    TagGoogle \
                     WebViewGoogle
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
