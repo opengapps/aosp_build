@@ -92,11 +92,6 @@ These two targets take care of locating the correct APK/libraries in an architec
 The APK target will also scan the APK for any libraries, and if it finds libraries it will get the AOSP build system to automatically extract them and place them at the expected place.
 
 ## Caveats
-### APKs are forced to nodpi
-While the AOSP build system has support for selecting a prebuilt APK based on DPI, it expects these to have names like `Chrome_hdpi.apk`, `Chrome_xhdpi.apk` etc.
-
-Support could be added in the `core/find_apk.sh` script, but this was not prioritized.
-
 ### Some modules are missing overrides
 With reference to the [package comparison](https://github.com/opengapps/opengapps/wiki/Package-Comparison), currently only package overrides has been setup for a `GAPPS_VARIANT` of `micro` or lower, + `Chrome`.
 
