@@ -6,37 +6,75 @@ getsourceforapi() {
   if ! stat --printf='' "$SOURCES/$2/"*"app/$1" 2>/dev/null; then
     return 1 #appname is not there, error!?
   fi
-  appname="$3"
-  sourceapks=""
+  appname="$1"
+  sourceapk=""
   OLDIFS="$IFS"
   IFS="
 "  #We set IFS to newline here so that spaces can survive the for loop
   #sed copies filename to the beginning, to compare version, and later we remove it with cut
   for foundapk in $(find $SOURCES/$2/*app/$1 -iname '*.apk' | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 | cut -d/ -f2-); do
-    foundpath="$(dirname "$(dirname "$foundapk")")"
-    api="$(basename "$foundpath")"
-    if [ "$api" -le "$API" ]; then
-      #We need to keep them sorted
-      sourceapks="$(find "$foundpath" -name "*.apk" | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 | cut -d/ -f2-)"
-      break
+    founddpipath="$(dirname "$foundapk")"
+    dpi="$(basename "$founddpipath")"
+    if [[ "$dpi" = "nodpi" || "$dpi" = *"$3"* ]]; then
+      foundpath="$(dirname "$founddpipath")"
+      api="$(basename "$foundpath")"
+      if [ "$api" -le "$API" ]; then
+        sourceapk="$foundapk"
+        break;
+      fi
     fi
   done
   IFS="$OLDIFS"
-  if [ -z "$sourceapks" ]; then
-    echo "WARNING: No APK found compatible with API level $API for package $appname on $2, lowest found: $api" >&2
+  if [ -z "$sourceapk" ]; then
+    echo "WARNING: No APK found compatible with API level $API for package $appname on $2" >&2
     return 1 #error
   fi
-  #$sourceapks and $api have the useful returnvalues
+  #$sourceapk and $api have the useful returnvalues
   return 0 #return that it was a success
+}
+
+getdpivalue() {
+case "$1" in
+"xxxhdpi")
+dpivalue="640";
+    ;;
+"xxhdpi")
+dpivalue="480";
+    ;;
+"xhdpi")
+dpivalue="320";
+    ;;
+"hdpi")
+dpivalue="240";
+    ;;
+"mdpi")
+dpivalue="160";
+    ;;
+"ldpi")
+dpivalue="120";
+    ;;
+*)
+return 1;
+    ;;
+esac
+
+return 0;
 }
 
 SOURCES="$1"
 API="$2"
-PACKAGE_NAME="$3"
-ARCH="$4"
+DPI="$3"
+PACKAGE_NAME="$4"
+ARCH="$5"
 
-if getsourceforapi "$PACKAGE_NAME" "$ARCH"; then
-echo "$sourceapks" | grep nodpi
+if getdpivalue "$DPI"; then
+  if getsourceforapi "$PACKAGE_NAME" "$ARCH" "$dpivalue"; then
+    echo "$sourceapk"
+  else
+    exit 1
+  fi
+elif getsourceforapi "$PACKAGE_NAME" "$ARCH" "nodpi"; then
+  echo "$sourceapk"
 else
-exit 1
+  exit 1
 fi
