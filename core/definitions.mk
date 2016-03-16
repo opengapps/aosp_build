@@ -50,5 +50,7 @@ $(join $(GAPPS_SOURCES_PATH)/,$(shell cd $(GAPPS_SOURCES_PATH); \
 	find -L $(call _gapps-find-lib-alternatives, $(join $(1)/,$(2)), $(3)) 2>/dev/null | tail -n1))
 endef
 
+ifneq ($(GAPPS_VARIANT),)
 BUILD_GAPPS_PREBUILT_APK := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_apk.mk
 BUILD_GAPPS_PREBUILT_SHARED_LIBRARY := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_shared_library.mk
+endif
