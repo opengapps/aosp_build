@@ -7,7 +7,7 @@ define get-allowed-api-levels-regex
 endef
 
 define find-apk-for-pkg
-$(shell $(GAPPS_BUILD_SYSTEM_PATH)/find_apk.sh "$(GAPPS_SOURCES_PATH)" $(PLATFORM_SDK_VERSION) $(2) $(1))
+$(shell $(GAPPS_BUILD_SYSTEM_PATH)/find_apk.sh "$(GAPPS_SOURCES_PATH)" $(PLATFORM_SDK_VERSION) $(PRODUCT_AAPT_PREF_CONFIG) $(2) $(1) $(GAPPS_FORCE_MATCHING_DPI) $(GAPPS_AAPT_PATH))
 endef
 
 define get-lib-search-path
