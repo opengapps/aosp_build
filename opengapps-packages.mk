@@ -12,22 +12,28 @@ PRODUCT_PACKAGES += GoogleBackupTransport \
                     SetupWizard \
                     Phonesky \
                     GoogleCalendarSyncAdapter
+                    
+ifneq ($(filter $(call get-allowed-api-levels),23),)
+PRODUCT_PACKAGES += GoogleTTS
+endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
 PRODUCT_PACKAGES += FaceLock \
+                    HotwordEnrollment \
                     Velvet
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),micro),) # require at least micro
 PRODUCT_PACKAGES += CalendarGooglePrebuilt \
                     PrebuiltExchange3Google \
                     PrebuiltGmail \
-                    GoogleHome \
-                    GoogleTTS
+                    GoogleHome
+                    
+ifeq ($(filter $(call get-allowed-api-levels),23),)
+PRODUCT_PACKAGES += GoogleTTS
+endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),mini),) # require at least mini
 PRODUCT_PACKAGES += CalculatorGoogle \
-                    GoogleHome \
-                    GoogleTTS \
                     PrebuiltDeskClockGoogle \
                     PlusOne \
                     Hangouts \
@@ -58,6 +64,7 @@ ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # require at least stock
 DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/stock
 
 PRODUCT_PACKAGES += GoogleCamera \
+                    GoogleContacts \
                     LatinImeGoogle \
                     PrebuiltBugle \
                     TagGoogle \
