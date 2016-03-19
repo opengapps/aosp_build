@@ -1,10 +1,9 @@
 LOCAL_PATH := .
-include $(CLEAR_VARS)
+include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := GoogleTTS
 LOCAL_PACKAGE_NAME := com.google.android.tts
 
-ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # overwrite if stock/super
-LOCAL_OVERRIDES_PACKAGES := PicoTts
-endif
+GAPPS_LOCAL_OVERRIDES_MIN_VARIANT := stock
+GAPPS_LOCAL_OVERRIDES_PACKAGES := PicoTts
 
 include $(BUILD_GAPPS_PREBUILT_APK)
