@@ -1,10 +1,9 @@
 LOCAL_PATH := .
-include $(CLEAR_VARS)
+include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := PrebuiltBugle
 LOCAL_PACKAGE_NAME := com.google.android.apps.messaging
 
-ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # overwrite if stock/super
-LOCAL_OVERRIDES_PACKAGES := messaging Mms
-endif
+GAPPS_LOCAL_OVERRIDES_MIN_VARIANT :=
+GAPPS_LOCAL_OVERRIDES_PACKAGES := messaging Mms
 
 include $(BUILD_GAPPS_PREBUILT_APK)

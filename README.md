@@ -55,6 +55,42 @@ PRODUCT_PACKAGES += Chrome
 
 This uses the module name. You can find the module name for a package by checking `vendor/google/build/modules/` and look at the `LOCAL_MODULE` value.
 
+### Force stock package overrides
+You can force GApps packages to override the stock packages.
+This can be defined in two ways inside `device/manufacturer/product/device.mk`.
+
+For all package:
+
+```
+GAPPS_FORCE_PACKAGE_OVERRIDES := true
+```
+
+On a per-app basis, add the GApps package to `GAPPS_PACKAGE_OVERRIDES`.
+Example:
+
+```
+GAPPS_PACKAGE_OVERRIDES := Chrome
+```
+
+### Disable stock packages overrides
+You can tell the GApps packages not to override the stock packages.
+This can be defined inside `device/manufacturer/product/device.mk` by adding the GApps package to `GAPPS_BYPASS_PACKAGE_OVERRIDES`.
+Example:
+
+```
+GAPPS_BYPASS_PACKAGE_OVERRIDES := Chrome
+```
+
+### Force the system to get the correct DPI package for your device
+By default, the latest package version will be selected with the closest DPI.
+You can force the system to select either a matching DPI package or "nodpi" package even if it is not the latest version.
+
+This can be defined inside `device/manufacturer/product/device.mk` using:
+
+```
+GAPPS_FORCE_MATCHING_DPI := true
+```
+
 ### DEX pre-optimization
 It is possible to build Android with dex preoptimization. This results in a quicker boot time, at the cost of additional storage used on `/system`.
 

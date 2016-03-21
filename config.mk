@@ -3,6 +3,7 @@ GAPPS_BUILD_SYSTEM_PATH := vendor/google/build/core
 GAPPS_SOURCES_PATH := vendor/opengapps/sources
 GAPPS_DEVICE_FILES_PATH := vendor/google/build
 GAPPS_FILES := $(GAPPS_DEVICE_FILES_PATH)/opengapps-files.mk
+GAPPS_CLEAR_VARS := $(GAPPS_BUILD_SYSTEM_PATH)/clear_vars.mk
 
 ifeq ($(GAPPS_FORCE_MATCHING_DPI),)
   GAPPS_FORCE_MATCHING_DPI := false

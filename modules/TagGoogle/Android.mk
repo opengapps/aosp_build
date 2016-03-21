@@ -1,10 +1,9 @@
 LOCAL_PATH := .
-include $(CLEAR_VARS)
+include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := TagGoogle
 LOCAL_PACKAGE_NAME := com.google.android.tag
 
-ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # overwrite if stock/super
-LOCAL_OVERRIDES_PACKAGES := Tag
-endif
+GAPPS_LOCAL_OVERRIDES_MIN_VARIANT :=
+GAPPS_LOCAL_OVERRIDES_PACKAGES := Tag
 
 include $(BUILD_GAPPS_PREBUILT_APK)
