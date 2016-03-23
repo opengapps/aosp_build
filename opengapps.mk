@@ -1,13 +1,9 @@
 # Opengapps AOSP build system
-GAPPS_BUILD_SYSTEM_PATH := vendor/google/build/core
-GAPPS_SOURCES_PATH := vendor/opengapps/sources
-GAPPS_DEVICE_FILES_PATH := vendor/google/build
-GAPPS_FILES := $(GAPPS_DEVICE_FILES_PATH)/opengapps-files.mk
+GAPPS_DEVICE_FILES_PATH := $(LOCAL_PATH)
+GAPPS_BUILD_SYSTEM_PATH := $(GAPPS_DEVICE_FILES_PATH)/core
 GAPPS_CLEAR_VARS := $(GAPPS_BUILD_SYSTEM_PATH)/clear_vars.mk
-
-ifeq ($(GAPPS_FORCE_MATCHING_DPI),)
-  GAPPS_FORCE_MATCHING_DPI := false
-endif
+GAPPS_SOURCES_PATH ?= vendor/opengapps/sources
+GAPPS_FORCE_MATCHING_DPI ?= false
 
 ifeq ($(GAPPS_FORCE_MATCHING_DPI),false)
   GAPPS_AAPT_PATH := $(shell find prebuilts/sdk/tools/$(HOST_OS) -executable -name aapt | head -n 1)
@@ -24,14 +20,15 @@ endif
 
 include $(GAPPS_BUILD_SYSTEM_PATH)/definitions.mk
 
-# Device should define their GAPPS_VARIANT in device/manufacturer/product/BoardConfig.mk
+# Device should define their GAPPS_VARIANT in device/manufacturer/product/device.mk
 ifeq ($(GAPPS_VARIANT),)
   $(error GAPPS_VARIANT must be configured)
 endif
-GAPPS_VARIANT_EVAL := $(call get-gapps-variant,$(GAPPS_VARIANT))
+TARGET_GAPPS_VARIANT := $(call get-gapps-variant,$(GAPPS_VARIANT))
 
-ifeq ($(GAPPS_VARIANT_EVAL),)
+ifeq ($(TARGET_GAPPS_VARIANT),)
   $(error GAPPS_VARIANT $(GAPPS_VARIANT) was not found. Use of one of pico,nano,micro,mini,full,stock,super)
 endif
 
-TARGET_GAPPS_VARIANT := $(GAPPS_VARIANT_EVAL)
+include $(GAPPS_DEVICE_FILES_PATH)/opengapps-packages.mk
+include $(GAPPS_DEVICE_FILES_PATH)/opengapps-files.mk

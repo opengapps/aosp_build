@@ -2,7 +2,7 @@
 
 ### Disclaimer
 1. *Use this at your own risk.* Cyanogenmod received a cease and desist letter from Google when they included Google Apps in their ROM. See: [A Note on Google Apps for Android](http://android-developers.blogspot.com/2009/09/note-on-google-apps-for-android.html)
-2. While this project places code in `vendor/google/build`, **This project is in no way affiliated with, sponsored by, or related to Google.** Placement of code in `vendor/google/build` is only done because it is required by the AOSP build process (more on that later).
+2. **This project is in no way affiliated with, sponsored by, or related to Google.**
 
 ## Getting started
 **1. Add the build system, and the wanted sources to your manifest.**
@@ -13,7 +13,7 @@ and add the following towards the end:
 ```xml
 <remote name="opengapps" fetch="https://github.com/opengapps/"  />
 
-<project path="vendor/google/build" name="aosp_build" revision="master" remote="opengapps" />
+<project path="vendor/opengapps/build" name="aosp_build" revision="master" remote="opengapps" />
 <project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="opengapps" />
 <!-- If you need other/additional targets, follow the same template: -->
 <project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="opengapps" />
@@ -38,7 +38,7 @@ The `opengapps-packages.mk` file will make the Android build system build the ne
 
 In `device/manufacturer/product/device.mk` file, towards the end, add:
 ```makefile
-$(call inherit-product, vendor/google/build/opengapps-packages.mk)
+$(call inherit-product, vendor/opengapps/build/opengapps.mk)
 ```
 
 **4. Build Android**
@@ -53,7 +53,7 @@ In your `device/manufacturer/product/device.mk` just add, for example:
 PRODUCT_PACKAGES += Chrome
 ```
 
-This uses the module name. You can find the module name for a package by checking `vendor/google/build/modules/` and look at the `LOCAL_MODULE` value.
+This uses the module name. You can find the module name for a package by checking `vendor/opengapps/build/modules/` and look at the `LOCAL_MODULE` value.
 
 ### Force stock package overrides
 You can force GApps packages to override the stock packages.
@@ -107,13 +107,8 @@ DONT_DEXPREOPT_PREBUILTS := true
 ```
 
 ## How it works
-The OpenGApps AOSP based build system is placed in `vendor/google/build` and includes a file called `config.mk`. This is loaded by the AOSP build system very early, and allows us to define the necessary "functions" and build targets.
-
-in `build/core/main.mk`:
-```
-# Include the google-specific config
--include vendor/google/build/config.mk
-```
+The OpenGApps AOSP based build system is placed in `vendor/opengapps/build` and includes a file called `opengapps.mk`.
+By including this in our device.mk file, this allows us to define the necessary "functions" and build targets.
 
 We use this hook to define two targets:
 ```
