@@ -1,4 +1,5 @@
 LOCAL_PATH := .
+include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := TagGoogle
 LOCAL_PACKAGE_NAME := com.google.android.tag

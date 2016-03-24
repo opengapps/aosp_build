@@ -1,5 +1,3 @@
-include $(CLEAR_VARS)
-
 # Reset custom local variables.
 GAPPS_LOCAL_OVERRIDES_PACKAGES :=
 GAPPS_LOCAL_OVERRIDES_MIN_VARIANT :=
