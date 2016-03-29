@@ -1,13 +1,13 @@
 define get-allowed-api-levels
-$(shell seq 1 $(PLATFORM_SDK_VERSION))
+$(shell seq 1 "$(PLATFORM_SDK_VERSION)")
 endef
 
 define get-allowed-api-levels-regex
-($(call subst, ,|,$(call get-allowed-api-levels)))
+($(call subst,,|,$(call get-allowed-api-levels)))
 endef
 
 define find-apk-for-pkg
-$(shell $(GAPPS_BUILD_SYSTEM_PATH)/find_apk.sh "$(GAPPS_SOURCES_PATH)" $(PLATFORM_SDK_VERSION) $(PRODUCT_AAPT_PREF_CONFIG) $(2) $(1) $(GAPPS_FORCE_MATCHING_DPI) $(GAPPS_AAPT_PATH))
+$(shell "$(GAPPS_BUILD_SYSTEM_PATH)/find_apk.sh" "$(GAPPS_SOURCES_PATH)" "$(PLATFORM_SDK_VERSION)" "$(PRODUCT_AAPT_PREF_CONFIG)" "$(2)" "$(1)" "$(GAPPS_FORCE_MATCHING_DPI)" "$(GAPPS_AAPT_PATH)")
 endef
 
 define get-lib-search-path
@@ -15,7 +15,7 @@ $(if $(filter $(1),arm),lib/armeabi*/*,lib/$(1)*/*)
 endef
 
 define find-libs-in-apk
-$(addprefix @,$(shell zipinfo -1 $(2) | grep "$(call get-lib-search-path, $(1))" | grep -v -E "*/crazy.*"))
+$(addprefix @,$(shell zipinfo -1 "$(2)" | grep "$(call get-lib-search-path, $(1))" | grep -v -E "*/crazy.*"))
 endef
 
 define get-gapps-variant
@@ -32,22 +32,22 @@ endef
 
 define _gapps-all-files-under
 $(patsubst ./%,%, \
-	$(shell cd $(GAPPS_SOURCES_PATH); cd $(1); \
+	$(shell cd "$(GAPPS_SOURCES_PATH)"; cd "$(1)"; \
 		find -L $(2) -type f -and -not -name ".*") \
 )
 endef
 
 define gapps-copy-to-system
-$(foreach F,$(call _gapps-all-files-under, $(1), $(2)),$(join $(GAPPS_SOURCES_PATH)/,$(1))/$F:system/$F)
+$(foreach F,$(call _gapps-all-files-under,$(1),$(2)),$(join $(GAPPS_SOURCES_PATH)/,$(1))/$F:system/$F)
 endef
 
 define _gapps-find-lib-alternatives
-$(foreach F,$(call get-allowed-api-levels), $(join $(join $(1)/,$F)/,$(2)))
+$(foreach F,$(call get-allowed-api-levels),$(join $(join $(1)/,$F)/,$(2)))
 endef
 
 define gapps-find-lib-for-arch
-$(join $(GAPPS_SOURCES_PATH)/,$(shell cd $(GAPPS_SOURCES_PATH); \
-	find -L $(call _gapps-find-lib-alternatives, $(join $(1)/,$(2)), $(3)) 2>/dev/null | tail -n1))
+$(join $(GAPPS_SOURCES_PATH)/,$(shell cd "$(GAPPS_SOURCES_PATH)"; \
+	find -L $(call _gapps-find-lib-alternatives,$(join $(1)/,$(2)),$(3)) 2>/dev/null | tail -n1))
 endef
 
 BUILD_GAPPS_PREBUILT_APK := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_apk.mk
