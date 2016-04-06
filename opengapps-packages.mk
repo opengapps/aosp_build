@@ -1,6 +1,8 @@
 include vendor/google/build/config.mk
 include $(GAPPS_FILES)
 
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
+
 PRODUCT_PACKAGES += GoogleBackupTransport \
                     GoogleContactsSyncAdapter \
                     GoogleFeedback \
