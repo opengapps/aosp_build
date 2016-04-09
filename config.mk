@@ -10,7 +10,7 @@ ifeq ($(GAPPS_FORCE_MATCHING_DPI),)
 endif
 
 ifeq ($(GAPPS_FORCE_MATCHING_DPI),false)
-  GAPPS_AAPT_PATH := prebuilts/sdk/tools/$(HOST_OS)/bin/aapt$(HOST_EXECUTABLE_SUFFIX)
+  GAPPS_AAPT_PATH := $(shell find prebuilts/sdk/tools/$(HOST_OS) -executable -name aapt | head -n 1)
   # Check if aapt is present in prebuilts or if it is installed.
   ifeq ($(wildcard $(GAPPS_AAPT_PATH)),)
     GAPPS_TEST_AAPT := $(shell command -v aapt)
