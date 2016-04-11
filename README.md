@@ -136,3 +136,11 @@ Pull requests to add package overrides for more modules is welcome. See `modules
 ### This has currently only been tested on a 5.1 ARM based device
 Your milage may vary.
 
+### Chrome on Lollipop requires an extra patch
+Run these commands:
+```
+cd build
+curl https://raw.githubusercontent.com/opengapps/aosp_build/master/patches/Lollipop/0001-Fix-Chrome.patch | git am -
+```
+
+(Patch only tested on 5.1.1 r37).
