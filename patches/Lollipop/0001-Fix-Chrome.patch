@@ -1,0 +1,29 @@
+From ec855ea4e180102a11ee5ecd3345c92477f575fa Mon Sep 17 00:00:00 2001
+From: Arne-Christian Blystad <arne.christian@blystad.me>
+Date: Mon, 11 Apr 2016 11:08:20 +0200
+Subject: [PATCH] Don't extract crazy native libraries. Fixes Chrome.
+
+Chrome uses its own module loader (libcrazy) which it expects to find inside the
+APK, not outside.
+
+Fixes #21
+---
+ core/prebuilt_internal.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/prebuilt_internal.mk b/core/prebuilt_internal.mk
+index bc6088f..03bcf1f 100644
+--- a/core/prebuilt_internal.mk
++++ b/core/prebuilt_internal.mk
+@@ -183,7 +183,7 @@ include $(BUILD_SYSTEM)/dex_preopt_odex_install.mk
+ $(built_module) : $(my_prebuilt_src_file) | $(ACP) $(ZIPALIGN) $(SIGNAPK_JAR)
+ 	$(transform-prebuilt-to-target)
+ ifdef extracted_jni_libs
+-	$(hide) zip -d $@ 'lib/*.so'  # strip embedded JNI libraries.
++	$(hide) unzip -Z -1 $@ | grep "lib/" | grep -v "/crazy." | xargs zip -d $@ # strip embedded JNI libraries.
+ endif
+ ifneq ($(LOCAL_CERTIFICATE),PRESIGNED)
+ 	$(sign-package)
+-- 
+2.7.4
+
