@@ -26,7 +26,6 @@ PRODUCT_PACKAGES += FaceLock \
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),micro),) # require at least micro
 PRODUCT_PACKAGES += CalendarGooglePrebuilt \
-                    PrebuiltExchange3Google \
                     PrebuiltGmail \
                     GoogleHome
                     
