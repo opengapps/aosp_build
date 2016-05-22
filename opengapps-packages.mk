@@ -89,7 +89,8 @@ PRODUCT_PACKAGES += Wallet \
                     Tycho \
                     Street \
                     TranslatePrebuilt \
-                    GoogleZhuyinIME
+                    GoogleZhuyinIME \
+                    Earth
 
 endif # end super
 endif # end stock
