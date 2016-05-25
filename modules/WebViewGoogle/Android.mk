@@ -6,6 +6,8 @@ LOCAL_PACKAGE_NAME := com.google.android.webview
 
 LOCAL_OVERRIDES_PACKAGES := webview
 
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/stock
+
 LOCAL_REQUIRED_MODULES := libwebviewchromium_loader \
                           libwebviewchromium_plat_support
 
