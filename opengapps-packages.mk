@@ -63,8 +63,6 @@ PRODUCT_PACKAGES += Books \
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # require at least stock
 
-DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/stock
-
 PRODUCT_PACKAGES += GoogleCamera \
                     GoogleContacts \
                     LatinImeGoogle \
