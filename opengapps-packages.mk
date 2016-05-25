@@ -16,7 +16,8 @@ PRODUCT_PACKAGES += GoogleBackupTransport \
                     GoogleCalendarSyncAdapter
                     
 ifneq ($(filter $(call get-allowed-api-levels),23),)
-PRODUCT_PACKAGES += GoogleTTS
+PRODUCT_PACKAGES += GoogleTTS \
+                    GooglePackageInstaller
 endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
