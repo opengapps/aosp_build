@@ -65,6 +65,12 @@ For all package:
 GAPPS_FORCE_PACKAGE_OVERRIDES := true
 ```
 
+If you want to include WebViewGoogle on a non-stock build you need:
+
+```
+GAPPS_FORCE_WEBVIEW_OVERRIDES := true
+```
+
 On a per-app basis, add the GApps package to `GAPPS_PACKAGE_OVERRIDES`.
 Example:
 
