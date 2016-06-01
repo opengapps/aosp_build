@@ -64,14 +64,13 @@ PRODUCT_PACKAGES += Books \
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # require at least stock
 
-DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/stock
+GAPPS_FORCE_WEBVIEW_OVERRIDES := true
 
 PRODUCT_PACKAGES += GoogleCamera \
                     GoogleContacts \
                     LatinImeGoogle \
                     PrebuiltBugle \
-                    TagGoogle \
-                    WebViewGoogle
+                    TagGoogle
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
 
@@ -98,3 +97,8 @@ endif # end full
 endif # end mini
 endif # end micro
 endif # end nano
+
+ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview
+PRODUCT_PACKAGES += WebViewGoogle
+endif
