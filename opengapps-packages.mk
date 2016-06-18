@@ -30,19 +30,22 @@ PRODUCT_PACKAGES += CalendarGooglePrebuilt \
                     PrebuiltExchange3Google \
                     PrebuiltGmail \
                     GoogleHome
-                    
+
 ifeq ($(filter $(call get-allowed-api-levels),23),)
 PRODUCT_PACKAGES += GoogleTTS
 endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),mini),) # require at least mini
-PRODUCT_PACKAGES += CalculatorGoogle \
-                    PrebuiltDeskClockGoogle \
+PRODUCT_PACKAGES += PrebuiltDeskClockGoogle \
                     PlusOne \
                     Hangouts \
                     Maps \
                     Photos \
                     YouTube
+
+ifneq ($(filter $(call get-allowed-api-levels),23),)
+PRODUCT_PACKAGES += CalculatorGoogle
+endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),full),) # require at least full
 PRODUCT_PACKAGES += Books \
