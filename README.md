@@ -7,16 +7,16 @@
 ## Getting started
 **1. Add the build system, and the wanted sources to your manifest.**
 
-Find your manifest file. Check `${ANDROID_BUILD_TOP}/.repo/manifest/`
-
-and add the following towards the end:
+Create the file `${ANDROID_BUILD_TOP}/.repo/local_manifests/opengapps.xml` (you might have to create the `local_manifests` folder first) with the following content:
 ```xml
-<remote name="opengapps" fetch="https://github.com/opengapps/"  />
-
-<project path="vendor/google/build" name="aosp_build" revision="master" remote="opengapps" />
-<project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="opengapps" />
-<!-- If you need other/additional targets, follow the same template: -->
-<project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="opengapps" />
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="opengapps" fetch="https://github.com/opengapps/" />
+  <project path="vendor/google/build" name="aosp_build" revision="master" remote="opengapps" />
+  <project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="opengapps" />
+  <!-- If you need other/additional targets, follow the same template: -->
+  <project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="opengapps" />
+</manifest>
 ```
 
 **2. Set the desired OpenGapps variant**
