@@ -68,6 +68,9 @@ PRODUCT_PACKAGES += Books \
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),stock),) # require at least stock
 
 GAPPS_FORCE_WEBVIEW_OVERRIDES := true
+ifneq ($(filter $(call get-allowed-api-levels),23),)
+GAPPS_FORCE_DIALER_OVERRIDES := true
+endif
 
 PRODUCT_PACKAGES += GoogleCamera \
                     GoogleContacts \
@@ -104,4 +107,11 @@ endif # end nano
 ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
 DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview
 PRODUCT_PACKAGES += WebViewGoogle
+endif
+
+ifneq ($(filter $(call get-allowed-api-levels),23),)
+ifeq ($(GAPPS_FORCE_DIALER_OVERRIDES),true)
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/dialer
+PRODUCT_PACKAGES += GoogleDialer
+endif
 endif
