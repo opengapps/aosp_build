@@ -112,7 +112,9 @@ PRODUCT_PACKAGES += WebViewGoogle
 endif
 
 ifeq ($(GAPPS_FORCE_BROWSER_OVERRIDES),true)
+ifneq ($(filter $(call get-allowed-api-levels),23),)
 DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/browser
+endif
 PRODUCT_PACKAGES += Chrome
 endif
 
