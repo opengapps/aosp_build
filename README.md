@@ -77,6 +77,12 @@ If you want to include Google Dialer on a non-stock build you need:
 GAPPS_FORCE_DIALER_OVERRIDES := true
 ```
 
+If you want to include Chrome on a non-full build you need:
+
+```
+GAPPS_FORCE_BROWSER_OVERRIDES := true
+```
+
 On a per-app basis, add the GApps package to `GAPPS_PACKAGE_OVERRIDES`.
 Example:
 
