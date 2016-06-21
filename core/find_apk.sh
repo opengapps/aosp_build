@@ -10,7 +10,6 @@ getlatestapk() {
   sourceapk=""
   highcompatversion=""
   tempapks=( )
-  declare -n currapk="tempapks$i"
   OLDIFS="$IFS"
   IFS="
 " # We set IFS to newline here so that spaces can survive the for loop
@@ -51,7 +50,7 @@ getlatestapk() {
         break;
       fi
       # Add package to list.
-      currapk+=("$foundapk")
+      tempapks+=("$foundapk")
     fi
   done
   
