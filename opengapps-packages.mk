@@ -48,8 +48,10 @@ PRODUCT_PACKAGES += CalculatorGoogle
 endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),full),) # require at least full
+
+GAPPS_FORCE_BROWSER_OVERRIDES := true
+
 PRODUCT_PACKAGES += Books \
-                    Chrome \
                     CloudPrint2 \
                     EditorsDocs \
                     Drive \
@@ -107,6 +109,11 @@ endif # end nano
 ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
 DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview
 PRODUCT_PACKAGES += WebViewGoogle
+endif
+
+ifeq ($(GAPPS_FORCE_BROWSER_OVERRIDES),true)
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/browser
+PRODUCT_PACKAGES += Chrome
 endif
 
 ifneq ($(filter $(call get-allowed-api-levels),23),)
