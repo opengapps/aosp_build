@@ -71,11 +71,11 @@ GAPPS_FORCE_WEBVIEW_OVERRIDES := true
 ifneq ($(filter $(call get-allowed-api-levels),23),)
 GAPPS_FORCE_DIALER_OVERRIDES := true
 endif
+GAPPS_FORCE_MMS_OVERRIDES := true
 
 PRODUCT_PACKAGES += GoogleCamera \
                     GoogleContacts \
                     LatinImeGoogle \
-                    PrebuiltBugle \
                     TagGoogle
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
@@ -114,4 +114,9 @@ ifeq ($(GAPPS_FORCE_DIALER_OVERRIDES),true)
 DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/dialer
 PRODUCT_PACKAGES += GoogleDialer
 endif
+endif
+
+ifeq ($(GAPPS_FORCE_MMS_OVERRIDES),true)
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/mms
+PRODUCT_PACKAGES += PrebuiltBugle
 endif

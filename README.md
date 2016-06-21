@@ -71,6 +71,12 @@ If you want to include WebViewGoogle on a non-stock build you need:
 GAPPS_FORCE_WEBVIEW_OVERRIDES := true
 ```
 
+If you want to include Messenger on a non-stock build you need:
+
+```
+GAPPS_FORCE_MMS_OVERRIDES := true
+```
+
 If you want to include Google Dialer on a non-stock build you need:
 
 ```
