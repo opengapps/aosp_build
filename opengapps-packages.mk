@@ -88,6 +88,7 @@ endif
 
 PRODUCT_PACKAGES += Wallet \
                     DMAgent \
+                    GoogleEarth \
                     GCS \
                     GoogleHindiIME \
                     GoogleJapaneseInput \
