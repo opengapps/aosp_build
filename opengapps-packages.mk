@@ -88,6 +88,7 @@ endif
 
 PRODUCT_PACKAGES += Wallet \
                     DMAgent \
+                    GoogleEarth \
                     GCS \
                     GoogleHindiIME \
                     GoogleJapaneseInput \
@@ -96,8 +97,7 @@ PRODUCT_PACKAGES += Wallet \
                     Tycho \
                     Street \
                     TranslatePrebuilt \
-                    GoogleZhuyinIME \
-                    Earth
+                    GoogleZhuyinIME
 
 endif # end super
 endif # end stock
