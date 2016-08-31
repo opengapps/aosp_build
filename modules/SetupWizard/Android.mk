@@ -9,5 +9,6 @@ else
 endif
 
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_OVERRIDES_PACKAGES := Provision
 
 include $(BUILD_GAPPS_PREBUILT_APK)
