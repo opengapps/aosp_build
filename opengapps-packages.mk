@@ -108,7 +108,9 @@ endif # end nano
 
 ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
 ifneq ($(filter-out $(call get-allowed-api-levels),24),)
-DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/21
+else
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/24
 endif
 PRODUCT_PACKAGES += WebViewGoogle
 endif
