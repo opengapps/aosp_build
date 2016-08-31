@@ -76,7 +76,15 @@ GAPPS_FORCE_MMS_OVERRIDES := true
 PRODUCT_PACKAGES += GoogleCamera \
                     GoogleContacts \
                     LatinImeGoogle \
-                    TagGoogle
+                    TagGoogle \
+					GoogleVrCore
+
+ifneq ($(filter $(call get-allowed-api-levels),24),)
+PRODUCT_PACKAGES += GooglePrintRecommendationService \
+					GoogleExtServices \
+					GoogleExtShared
+
+endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
 
