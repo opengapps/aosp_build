@@ -43,9 +43,7 @@ PRODUCT_PACKAGES += PrebuiltDeskClockGoogle \
                     Photos \
                     YouTube
 
-ifneq ($(filter $(call get-allowed-api-levels),23),)
 PRODUCT_PACKAGES += CalculatorGoogle
-endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),full),) # require at least full
 
