@@ -43,9 +43,7 @@ PRODUCT_PACKAGES += PrebuiltDeskClockGoogle \
                     Photos \
                     YouTube
 
-ifneq ($(filter $(call get-allowed-api-levels),23),)
 PRODUCT_PACKAGES += CalculatorGoogle
-endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),full),) # require at least full
 
@@ -78,7 +76,15 @@ GAPPS_FORCE_MMS_OVERRIDES := true
 PRODUCT_PACKAGES += GoogleCamera \
                     GoogleContacts \
                     LatinImeGoogle \
-                    TagGoogle
+                    TagGoogle \
+					GoogleVrCore
+
+ifneq ($(filter $(call get-allowed-api-levels),24),)
+PRODUCT_PACKAGES += GooglePrintRecommendationService \
+					GoogleExtServices \
+					GoogleExtShared
+
+endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
 
@@ -108,7 +114,9 @@ endif # end nano
 
 ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
 ifneq ($(filter-out $(call get-allowed-api-levels),24),)
-DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/21
+else
+DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/24
 endif
 PRODUCT_PACKAGES += WebViewGoogle
 endif
