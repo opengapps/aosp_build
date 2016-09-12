@@ -161,9 +161,6 @@ With reference to the [package comparison](https://github.com/opengapps/opengapp
 
 Pull requests to add package overrides for more modules is welcome. See `modules/Chrome/Android.mk` for an example.
 
-### This has currently only been tested on a 5.1 ARM based device
-Your milage may vary.
-
 ### Chrome on Lollipop requires an extra patch
 Run these commands:
 ```
