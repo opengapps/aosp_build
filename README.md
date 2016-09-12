@@ -18,7 +18,7 @@ and add the following towards the end:
 <!-- If you need other/additional targets, follow the same template: -->
 <project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="opengapps" />
 
-<project path="vendor/opengapps/sources/arm64" name="arm" clone-depth="1" revision="master" remote="opengapps" />
+<project path="vendor/opengapps/sources/arm64" name="arm64" clone-depth="1" revision="master" remote="opengapps" />
 <project path="vendor/opengapps/sources/x86" name="x86" clone-depth="1" revision="master" remote="opengapps" />
 <project path="vendor/opengapps/sources/x86_64" name="x86_64" clone-depth="1" revision="master" remote="opengapps" />
 ```
