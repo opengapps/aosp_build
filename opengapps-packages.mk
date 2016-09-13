@@ -14,7 +14,7 @@ PRODUCT_PACKAGES += GoogleBackupTransport \
                     SetupWizard \
                     Phonesky \
                     GoogleCalendarSyncAdapter
-                    
+
 ifneq ($(filter $(call get-allowed-api-levels),23),)
 PRODUCT_PACKAGES += GoogleTTS \
                     GooglePackageInstaller
@@ -36,19 +36,17 @@ PRODUCT_PACKAGES += GoogleTTS
 endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),mini),) # require at least mini
-PRODUCT_PACKAGES += PrebuiltDeskClockGoogle \
+PRODUCT_PACKAGES += CalculatorGoogle \
+                    PrebuiltDeskClockGoogle \
                     PlusOne \
                     Hangouts \
                     Maps \
                     Photos \
                     YouTube
 
-PRODUCT_PACKAGES += CalculatorGoogle
-
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),full),) # require at least full
 
 GAPPS_FORCE_BROWSER_OVERRIDES := true
-
 PRODUCT_PACKAGES += Books \
                     CloudPrint2 \
                     EditorsDocs \
@@ -71,18 +69,16 @@ ifneq ($(filter $(call get-allowed-api-levels),23),)
 GAPPS_FORCE_DIALER_OVERRIDES := true
 endif
 GAPPS_FORCE_MMS_OVERRIDES := true
-
 PRODUCT_PACKAGES += GoogleCamera \
                     GoogleContacts \
                     LatinImeGoogle \
                     TagGoogle \
-					GoogleVrCore
+                    GoogleVrCore
 
 ifneq ($(filter $(call get-allowed-api-levels),24),)
 PRODUCT_PACKAGES += GooglePrintRecommendationService \
-					GoogleExtServices \
-					GoogleExtShared
-
+                    GoogleExtServices \
+                    GoogleExtShared
 endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
@@ -90,7 +86,6 @@ ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
 ifneq ($(filter $(call get-allowed-api-levels),23),)
 PRODUCT_PACKAGES += AndroidForWork
 endif
-
 PRODUCT_PACKAGES += Wallet \
                     DMAgent \
                     GoogleEarth \
