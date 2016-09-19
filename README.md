@@ -15,8 +15,13 @@ and add the following towards the end:
 
 <project path="vendor/google/build" name="aosp_build" revision="master" remote="opengapps" />
 <project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="opengapps" />
-<!-- If you need other/additional targets, follow the same template: -->
+
+<!-- arm64 depends on arm -->
 <project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="opengapps" />
+<project path="vendor/opengapps/sources/arm64" name="arm64" clone-depth="1" revision="master" remote="opengapps" />
+
+<project path="vendor/opengapps/sources/x86" name="x86" clone-depth="1" revision="master" remote="opengapps" />
+<project path="vendor/opengapps/sources/x86_64" name="x86_64" clone-depth="1" revision="master" remote="opengapps" />
 ```
 
 **2. Set the desired OpenGapps variant**
@@ -63,6 +68,30 @@ For all package:
 
 ```
 GAPPS_FORCE_PACKAGE_OVERRIDES := true
+```
+
+If you want to include WebViewGoogle on a non-stock build you need:
+
+```
+GAPPS_FORCE_WEBVIEW_OVERRIDES := true
+```
+
+If you want to include Messenger on a non-stock build you need:
+
+```
+GAPPS_FORCE_MMS_OVERRIDES := true
+```
+
+If you want to include Google Dialer on a non-stock build you need:
+
+```
+GAPPS_FORCE_DIALER_OVERRIDES := true
+```
+
+If you want to include Chrome on a non-full build you need:
+
+```
+GAPPS_FORCE_BROWSER_OVERRIDES := true
 ```
 
 On a per-app basis, add the GApps package to `GAPPS_PACKAGE_OVERRIDES`.
@@ -132,9 +161,6 @@ The APK target will also scan the APK for any libraries, and if it finds librari
 With reference to the [package comparison](https://github.com/opengapps/opengapps/wiki/Package-Comparison), currently only package overrides has been setup for a `GAPPS_VARIANT` of `micro` or lower, + `Chrome`.
 
 Pull requests to add package overrides for more modules is welcome. See `modules/Chrome/Android.mk` for an example.
-
-### This has currently only been tested on a 5.1 ARM based device
-Your milage may vary.
 
 ### Chrome on Lollipop requires an extra patch
 Run these commands:

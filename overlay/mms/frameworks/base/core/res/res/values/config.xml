@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2011, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<!-- These resources are around just to allow their values to be customized
+     for different hardware and product builds. -->
+<resources>
+    <!-- Default SMS Application. This will be the default SMS application when
+         the phone first boots. The user can then change the default app to one
+         of their choosing.
+         This can be overridden for devices where a different default SMS
+         application is desired.
+
+         If this string is empty or the specified package does not exist, then
+         the platform will search for an SMS app and use that (if there is one)-->
+    <string name="default_sms_application" translatable="false">com.google.android.apps.messaging</string>
+</resources>
