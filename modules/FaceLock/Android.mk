@@ -1,5 +1,5 @@
 # libfacelock_jni.so was renamed to libfacenet.so in Nougat+
-ifeq ($(filter $(call-get-allowed-api-levels),24),)
+ifeq ($(filter $(call get-allowed-api-levels),24),)
 FACELOCK_JNI_NAME := libfacelock_jni
 else
 FACELOCK_JNI_NAME := libfacenet
