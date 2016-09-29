@@ -8,7 +8,15 @@ getlatestapk() {
   tempapks=( )
   OLDIFS="$IFS"
   IFS="
-" # We set IFS to newline here so that spaces can survive the for loop
+" # We set IFS to newline here so that filenames containing spaces are
+  # handled correctly in the for-loops below.
+
+  # decompress apks
+  # some apks are lz compressed to work around github file-size limits.
+  for foundapklz in $(find "$1" -iname '*.apk.lz'); do
+    lunzip --keep "$foundapklz"
+  done
+
   # sed copies filename to the beginning, to compare version, and later we remove it with cut
   for foundapk in $(find "$1" -iname '*.apk' | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 | cut -d/ -f2-); do
     # Get package version name
