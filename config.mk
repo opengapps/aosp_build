@@ -22,6 +22,14 @@ ifeq ($(GAPPS_FORCE_MATCHING_DPI),false)
   endif
 endif
 
+GAPPS_LUNZIP_REQUIRED := $(shell find $(GAPPS_SOURCES_PATH) -name '*.apk.lz' -print -quit)
+ifneq ($(GAPPS_LUNZIP_REQUIRED),)
+  GAPPS_TEST_LUNZIP := $(shell command -v lunzip)
+  ifeq ($(GAPPS_TEST_LUNZIP),)
+    $(error lunzip is not available. Please install it first ("sudo apt-get install lunzip"))
+  endif
+endif
+
 include $(GAPPS_BUILD_SYSTEM_PATH)/definitions.mk
 
 # Device should define their GAPPS_VARIANT in device/manufacturer/product/BoardConfig.mk
