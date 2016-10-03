@@ -50,7 +50,7 @@ $(call inherit-product, vendor/google/build/opengapps-packages.mk)
 
 ## Customizations
 ### Adding extra packages
-You can add packages from versions higher then your set version. E.g. if you want to include `Chrome`, but you use `GAPPS_VARIANT:=micro`
+You can add packages from versions higher then your set version. E.g. if you want to include `Chrome`, but you use `GAPPS_VARIANT := micro`
 
 In your `device/manufacturer/product/device.mk` just add, for example:
 
@@ -59,6 +59,14 @@ PRODUCT_PACKAGES += Chrome
 ```
 
 This uses the module name. You can find the module name for a package by checking `vendor/google/build/modules/` and look at the `LOCAL_MODULE` value.
+
+### Excluding packages
+You can exclude certain packages from the list of packages associated with your selected OpenGapps variant. E.g. if you have `GAPPS_VARIANT := stock`
+and want all those apps installed except for `Hangouts`, then in your `device/manufacturer/product/device.mk` just add:
+
+```
+GAPPS_EXCLUDED_PACKAGES := Hangouts
+```
 
 ### Force stock package overrides
 You can force GApps packages to override the stock packages.
