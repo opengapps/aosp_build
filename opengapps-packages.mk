@@ -3,7 +3,7 @@ include $(GAPPS_FILES)
 
 DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
 
-PRODUCT_PACKAGES += GoogleBackupTransport \
+GAPPS_PRODUCT_PACKAGES += GoogleBackupTransport \
                     GoogleContactsSyncAdapter \
                     GoogleOneTimeInitializer \
                     GooglePartnerSetup \
@@ -14,27 +14,27 @@ PRODUCT_PACKAGES += GoogleBackupTransport \
                     GoogleCalendarSyncAdapter
 
 ifneq ($(filter $(call get-allowed-api-levels),23),)
-PRODUCT_PACKAGES += GoogleTTS \
+GAPPS_PRODUCT_PACKAGES += GoogleTTS \
                     GooglePackageInstaller
 endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
-PRODUCT_PACKAGES += FaceLock \
+GAPPS_PRODUCT_PACKAGES += FaceLock \
                     HotwordEnrollment \
                     Velvet
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),micro),) # require at least micro
-PRODUCT_PACKAGES += CalendarGooglePrebuilt \
+GAPPS_PRODUCT_PACKAGES += CalendarGooglePrebuilt \
                     PrebuiltExchange3Google \
                     PrebuiltGmail \
                     GoogleHome
 
 ifeq ($(filter $(call get-allowed-api-levels),23),)
-PRODUCT_PACKAGES += GoogleTTS
+GAPPS_PRODUCT_PACKAGES += GoogleTTS
 endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),mini),) # require at least mini
-PRODUCT_PACKAGES += CalculatorGoogle \
+GAPPS_PRODUCT_PACKAGES += CalculatorGoogle \
                     PrebuiltDeskClockGoogle \
                     PlusOne \
                     Hangouts \
@@ -45,7 +45,7 @@ PRODUCT_PACKAGES += CalculatorGoogle \
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),full),) # require at least full
 
 GAPPS_FORCE_BROWSER_OVERRIDES := true
-PRODUCT_PACKAGES += Books \
+GAPPS_PRODUCT_PACKAGES += Books \
                     CloudPrint2 \
                     EditorsDocs \
                     Drive \
@@ -67,14 +67,14 @@ ifneq ($(filter $(call get-allowed-api-levels),23),)
 GAPPS_FORCE_DIALER_OVERRIDES := true
 endif
 GAPPS_FORCE_MMS_OVERRIDES := true
-PRODUCT_PACKAGES += GoogleCamera \
+GAPPS_PRODUCT_PACKAGES += GoogleCamera \
                     GoogleContacts \
                     LatinImeGoogle \
                     TagGoogle \
                     GoogleVrCore
 
 ifneq ($(filter $(call get-allowed-api-levels),24),)
-PRODUCT_PACKAGES += GooglePrintRecommendationService \
+GAPPS_PRODUCT_PACKAGES += GooglePrintRecommendationService \
                     GoogleExtServices \
                     GoogleExtShared
 endif
@@ -82,9 +82,9 @@ endif
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
 
 ifneq ($(filter $(call get-allowed-api-levels),23),)
-PRODUCT_PACKAGES += AndroidForWork
+GAPPS_PRODUCT_PACKAGES += AndroidForWork
 endif
-PRODUCT_PACKAGES += Wallet \
+GAPPS_PRODUCT_PACKAGES += Wallet \
                     DMAgent \
                     GoogleEarth \
                     GCS \
@@ -103,6 +103,8 @@ endif # end full
 endif # end mini
 endif # end micro
 endif # end nano
+
+PRODUCT_PACKAGES += $(filter-out $(GAPPS_EXCLUDED_PACKAGES),$(GAPPS_PRODUCT_PACKAGES))
 
 ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
 ifneq ($(filter-out $(call get-allowed-api-levels),24),)
