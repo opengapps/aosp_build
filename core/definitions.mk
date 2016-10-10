@@ -30,15 +30,8 @@ $(if $(filter $(1),super),pico nano micro mini full stock super) \
 )
 endef
 
-define _gapps-all-files-under
-$(patsubst ./%,%, \
-	$(shell cd "$(GAPPS_SOURCES_PATH)"; cd "$(1)"; \
-		find -L $(2) -type f -and -not -name ".*") \
-)
-endef
-
 define gapps-copy-to-system
-$(foreach F,$(call _gapps-all-files-under,$(1),$(2)),$(join $(GAPPS_SOURCES_PATH)/,$(1))/$F:system/$F)
+$(shell python "$(GAPPS_BUILD_SYSTEM_PATH)/copy_files.py" "$(GAPPS_SOURCES_PATH)/$(1)/" "$(2)" "$(PLATFORM_SDK_VERSION)")
 endef
 
 define _gapps-find-lib-alternatives

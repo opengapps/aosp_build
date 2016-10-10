@@ -1,5 +1,6 @@
 # Always needed
-PRODUCT_COPY_FILES += $(call gapps-copy-to-system,all,etc framework)
+PRODUCT_COPY_FILES += $(call gapps-copy-to-system,all,etc)
+PRODUCT_COPY_FILES += $(call gapps-copy-to-system,all,framework)
 
 # Pico and higher
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),pico),)
