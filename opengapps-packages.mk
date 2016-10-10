@@ -83,9 +83,6 @@ endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),super),)
 
-ifneq ($(filter $(call get-allowed-api-levels),23),)
-GAPPS_PRODUCT_PACKAGES += AndroidForWork
-endif
 GAPPS_PRODUCT_PACKAGES += Wallet \
                     DMAgent \
                     GoogleEarth \
