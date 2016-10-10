@@ -132,3 +132,13 @@ ifeq ($(GAPPS_FORCE_MMS_OVERRIDES),true)
 DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/mms
 PRODUCT_PACKAGES += PrebuiltBugle
 endif
+
+ifeq ($(GAPPS_FORCE_PIXEL_HOME),true)
+GAPPS_EXCLUDED_PACKAGES += \
+    GoogleHome
+
+GAPPS_PRODUCT_PACKAGES += \
+    PixelHome \
+    PixelHomeIcons \
+    Wallpaper        
+endif
