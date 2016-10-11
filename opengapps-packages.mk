@@ -5,13 +5,11 @@ DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
 
 GAPPS_PRODUCT_PACKAGES += GoogleBackupTransport \
                     GoogleContactsSyncAdapter \
-                    GoogleFeedback \
                     GoogleOneTimeInitializer \
                     GooglePartnerSetup \
                     PrebuiltGmsCore \
                     GoogleServicesFramework \
                     GoogleLoginService \
-                    SetupWizard \
                     Phonesky \
                     GoogleCalendarSyncAdapter
 

@@ -6,7 +6,7 @@ GAPPS_FILES := $(GAPPS_DEVICE_FILES_PATH)/opengapps-files.mk
 GAPPS_CLEAR_VARS := $(GAPPS_BUILD_SYSTEM_PATH)/clear_vars.mk
 
 ifeq ($(GAPPS_FORCE_MATCHING_DPI),)
-  GAPPS_FORCE_MATCHING_DPI := false
+  GAPPS_FORCE_MATCHING_DPI := true
 endif
 
 ifeq ($(GAPPS_FORCE_MATCHING_DPI),false)
@@ -33,9 +33,13 @@ endif
 include $(GAPPS_BUILD_SYSTEM_PATH)/definitions.mk
 
 # Device should define their GAPPS_VARIANT in device/manufacturer/product/BoardConfig.mk
-ifeq ($(GAPPS_VARIANT),)
-  $(error GAPPS_VARIANT must be configured)
-endif
+# ifeq ($(GAPPS_VARIANT),)
+#   $(error GAPPS_VARIANT must be configured)
+# endif
+
+# Commented the code above out, because ariesve's device folder does not have a device.mk file
+# and since i am only using pico configuration, define the following
+GAPPS_VARIANT := pico
 GAPPS_VARIANT_EVAL := $(call get-gapps-variant,$(GAPPS_VARIANT))
 
 ifeq ($(GAPPS_VARIANT_EVAL),)

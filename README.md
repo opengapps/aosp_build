@@ -3,6 +3,7 @@
 ### Disclaimer
 1. *Use this at your own risk.* Cyanogenmod received a cease and desist letter from Google when they included Google Apps in their ROM. See: [A Note on Google Apps for Android](http://android-developers.blogspot.com/2009/09/note-on-google-apps-for-android.html)
 2. While this project places code in `vendor/google/build`, **This project is in no way affiliated with, sponsored by, or related to Google.** Placement of code in `vendor/google/build` is only done because it is required by the AOSP build process (more on that later).
+3. This is an modified fork from the OpenGapps projekt. Use this only if you really want.
 
 ## Getting started
 **1. Add the build system, and the wanted sources to your manifest.**
