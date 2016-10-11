@@ -28,6 +28,10 @@ ifneq ($(GAPPS_LUNZIP_REQUIRED),)
   ifeq ($(GAPPS_TEST_LUNZIP),)
     $(error lunzip is not available. Please install it first ("sudo apt-get install lunzip"))
   endif
+
+  ifneq ($(filter clean installclean, $(MAKECMDGOALS)),)
+    $(shell find $(GAPPS_SOURCES_PATH) -name "*apk.lz" | sed 's/\.apk\.lz$$/\.apk/' | xargs rm -f)
+  endif
 endif
 
 include $(GAPPS_BUILD_SYSTEM_PATH)/definitions.mk
