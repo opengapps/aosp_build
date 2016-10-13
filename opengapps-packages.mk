@@ -103,8 +103,6 @@ endif # end mini
 endif # end micro
 endif # end nano
 
-PRODUCT_PACKAGES += $(filter-out $(GAPPS_EXCLUDED_PACKAGES),$(GAPPS_PRODUCT_PACKAGES))
-
 ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
 ifneq ($(filter-out $(call get-allowed-api-levels),24),)
 DEVICE_PACKAGE_OVERLAYS += $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/21
@@ -142,3 +140,5 @@ GAPPS_PRODUCT_PACKAGES += \
     PixelHomeIcons \
     Wallpaper        
 endif
+
+PRODUCT_PACKAGES += $(filter-out $(GAPPS_EXCLUDED_PACKAGES),$(GAPPS_PRODUCT_PACKAGES))
