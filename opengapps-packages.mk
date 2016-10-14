@@ -114,6 +114,12 @@ endif # end mini
 endif # end micro
 endif # end nano
 
+# This needs to be at the end of standard files, but before the GAPPS_FORCE_* options,
+# since those also affect DEVICE_PACKAGE_OVERLAYS. We don't want to exclude a package
+# that also has an overlay, since that will make us use the overlay but not have the
+# package. This can cause issues.
+PRODUCT_PACKAGES += $(filter-out $(GAPPS_EXCLUDED_PACKAGES),$(GAPPS_PRODUCT_PACKAGES))
+
 ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
 ifneq ($(filter-out $(call get-allowed-api-levels),24),)
 DEVICE_PACKAGE_OVERLAYS += \
@@ -122,7 +128,7 @@ else
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/24
 endif
-GAPPS_PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     WebViewGoogle
 endif
 
@@ -131,7 +137,7 @@ ifneq ($(filter $(call get-allowed-api-levels),23),)
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/browser
 endif
-GAPPS_PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     Chrome
 endif
 
@@ -140,7 +146,7 @@ ifeq ($(GAPPS_FORCE_DIALER_OVERRIDES),true)
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/dialer
 
-GAPPS_PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     GoogleDialer
 endif
 endif
@@ -149,7 +155,7 @@ ifeq ($(GAPPS_FORCE_MMS_OVERRIDES),true)
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/mms
 
-GAPPS_PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     PrebuiltBugle
 endif
 
@@ -157,10 +163,8 @@ ifeq ($(GAPPS_FORCE_PIXEL_HOME),true)
 GAPPS_EXCLUDED_PACKAGES += \
     GoogleHome
 
-GAPPS_PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     PixelHome \
     PixelHomeIcons \
     Wallpaper        
 endif
-
-PRODUCT_PACKAGES += $(filter-out $(GAPPS_EXCLUDED_PACKAGES),$(GAPPS_PRODUCT_PACKAGES))
