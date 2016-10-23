@@ -102,10 +102,10 @@ If you want to include Chrome on a non-full build you need:
 GAPPS_FORCE_BROWSER_OVERRIDES := true
 ```
 
-If you want use PixelHome overriding GoogleHome you need:
+If you want use PixelLauncher overriding GoogleHome you need:
 
 ```
-GAPPS_FORCE_PIXEL_HOME := true
+GAPPS_FORCE_PIXEL_LAUNCHER := true
 ```
 
 On a per-app basis, add the GApps package to `GAPPS_PACKAGE_OVERRIDES`.
