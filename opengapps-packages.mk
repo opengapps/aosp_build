@@ -159,12 +159,16 @@ PRODUCT_PACKAGES += \
     PrebuiltBugle
 endif
 
-ifeq ($(GAPPS_FORCE_PIXEL_HOME),true)
+ifeq ($(GAPPS_FORCE_PIXEL_LAUNCHER),true)
 GAPPS_EXCLUDED_PACKAGES += \
     GoogleHome
 
+ifneq ($(filter $(call get-allowed-api-levels),25),)
 PRODUCT_PACKAGES += \
-    PixelHome \
-    PixelHomeIcons \
-    Wallpaper        
+    PixelLauncherIcons
+endif
+
+PRODUCT_PACKAGES += \
+    PixelLauncher \
+    Wallpapers
 endif
