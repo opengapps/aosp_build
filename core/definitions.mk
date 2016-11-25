@@ -43,5 +43,10 @@ $(join $(GAPPS_SOURCES_PATH)/,$(shell cd "$(GAPPS_SOURCES_PATH)"; \
 	find -L $(call _gapps-find-lib-alternatives,$(join $(1)/,$(2)),$(3)) 2>/dev/null | tail -n1))
 endef
 
+define gapps-find-lib-for-kitkat
+$(join $(GAPPS_SOURCES_PATH)/,$(shell cd "$(GAPPS_SOURCES_PATH)"; \
+	find -L $(join arm/lib/19/lib_from_app/,$(1)) 2>/dev/null | tail -n1))
+endef
+
 BUILD_GAPPS_PREBUILT_APK := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_apk.mk
 BUILD_GAPPS_PREBUILT_SHARED_LIBRARY := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_shared_library.mk
