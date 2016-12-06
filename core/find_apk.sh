@@ -126,6 +126,7 @@ getconformapk() {
     if [[ "$dpi" = "nodpi" || "$dpi" = "$2"
        || ( "$2" != "nodpi" && "$lodpi" != "$dpi" && "$lodpi" -le "$2" && $(echo "$dpi" | rev | cut -d '-' -f 1 | rev) -ge "$2" ) ]]; then
         sourceapk="$foundapk"
+        break;
     fi
   done
   
