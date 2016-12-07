@@ -18,7 +18,7 @@ getlatestapk() {
   done
 
   # sed copies filename to the beginning, to compare version, and later we remove it with cut
-  for foundapk in $(find "$1" -iname '*.apk' | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 | cut -d/ -f2-); do
+  for foundapk in $(find "$1" -iname '*.apk' | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 -n | cut -d/ -f2-); do
     # Get package version name
     apkprops="$("$aaptcmd" dump badging "$foundapk" 2> /dev/null)"
     apkversion="$(echo "$apkprops" | awk -F="'" '/versionName=/ {print $4}' | sed "s/'.*//g")"
@@ -119,13 +119,14 @@ getconformapk() {
   IFS="
 " # We set IFS to newline here so that spaces can survive the for loop
   # sed copies filename to the beginning, to compare version, and later we remove it with cut
-  for foundapk in $(find "$1" -iname '*.apk' | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 | cut -d/ -f2-); do
+  for foundapk in $(find "$1" -iname '*.apk' | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 -n | cut -d/ -f2-); do
     founddpipath="$(dirname "$foundapk")"
     dpi="$(basename "$founddpipath")"
     lodpi=$(echo "$dpi" | cut -d '-' -f 1)
     if [[ "$dpi" = "nodpi" || "$dpi" = "$2"
        || ( "$2" != "nodpi" && "$lodpi" != "$dpi" && "$lodpi" -le "$2" && $(echo "$dpi" | rev | cut -d '-' -f 1 | rev) -ge "$2" ) ]]; then
         sourceapk="$foundapk"
+        break;
     fi
   done
   
