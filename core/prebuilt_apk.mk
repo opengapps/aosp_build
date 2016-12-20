@@ -3,6 +3,8 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
 
+CURRENT_PATH := $(GAPPS_DEVICE_FILES_PATH)/modules/$(LOCAL_MODULE)
+
 # Override packages from GAPPS_LOCAL_OVERRIDES_PACKAGES only when required.
 # If a package should NOT in any case be installed, add it directly to LOCAL_OVERRIDES_PACKAGES instead.
 ifneq ($(GAPPS_LOCAL_OVERRIDES_PACKAGES),)
@@ -25,9 +27,15 @@ ifdef LOCAL_SRC_FILES
   LOCAL_PREBUILT_JNI_LIBS := $(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES))
 else
   LOCAL_SRC_FILES := $(call find-apk-for-pkg,$(TARGET_ARCH),$(LOCAL_PACKAGE_NAME))
-
   ifdef LOCAL_SRC_FILES
-    LOCAL_PREBUILT_JNI_LIBS_$(TARGET_ARCH) := $(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES))
+    ifeq ($(filter $(call get-allowed-api-levels), 21),)
+      # only kitkat
+      ifneq ($(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES)),)
+        LOCAL_SHARED_LIBRARIES := $(notdir $(basename $(shell zipinfo -1 "$(LOCAL_SRC_FILES)" "$(call get-lib-search-path, $(TARGET_ARCH))" -x lib/*/crazy/* 2>/dev/null)))
+      endif
+    else
+      LOCAL_PREBUILT_JNI_LIBS_$(TARGET_ARCH) := $(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES))
+    endif
   else
     ifdef TARGET_2ND_ARCH
       LOCAL_SRC_FILES := $(call find-apk-for-pkg,$(TARGET_2ND_ARCH),$(LOCAL_PACKAGE_NAME))
@@ -39,3 +47,16 @@ else
 endif
 
 include $(BUILD_PREBUILT)
+
+# generate mk file of shared library for kitkat
+ifdef LOCAL_SRC_FILES
+  ifeq ($(filter $(call get-allowed-api-levels), 21),)
+    ifneq ($(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES)),)
+      $(shell unzip -qqq -j -o "$(LOCAL_SRC_FILES)" "$(call get-lib-search-path, $(TARGET_ARCH))" -x lib/*/crazy/* -d "$(GAPPS_SOURCES_PATH)"/$(TARGET_ARCH)/lib/19/lib_from_app 2>/dev/null)
+      LIBRARIES :=
+      LIBRARIES := $(foreach L, $(LOCAL_SHARED_LIBRARIES), $(join $(LIBRARIES),$L))
+      $(shell python "$(GAPPS_BUILD_SYSTEM_PATH)/mk_generator_for_kitkat.py" $(CURRENT_PATH) $(LIBRARIES) 2>/dev/null)
+      include $(CURRENT_PATH)/SharedLibrary.mk
+    endif
+  endif
+endif
