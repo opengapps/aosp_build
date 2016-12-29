@@ -155,7 +155,9 @@ The OpenGApps AOSP based build system is placed in `vendor/google/build` and inc
 in `build/core/main.mk`:
 ```
 # Include the google-specific config
+ifneq ($(GAPPS_VARIANT),)
 -include vendor/google/build/config.mk
+endif
 ```
 
 We use this hook to define two targets:
