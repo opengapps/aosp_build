@@ -1,6 +1,10 @@
 include vendor/google/build/config.mk
 include $(GAPPS_FILES)
 
+ifeq ($(GAPPS_VARIANT),)
+  $(error GAPPS_VARIANT must be configured)
+endif
+
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
 
