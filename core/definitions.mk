@@ -1,3 +1,5 @@
+ifneq ($(GAPPS_VARIANT),)
+
 define get-allowed-api-levels
 $(shell seq 1 "$(PLATFORM_SDK_VERSION)")
 endef
@@ -50,3 +52,5 @@ endef
 
 BUILD_GAPPS_PREBUILT_APK := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_apk.mk
 BUILD_GAPPS_PREBUILT_SHARED_LIBRARY := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_shared_library.mk
+
+endif
