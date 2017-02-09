@@ -3,6 +3,7 @@ include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := Velvet
 LOCAL_PACKAGE_NAME := com.google.android.googlequicksearchbox
+LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_PRIVILEGED_MODULE := true
 
 LOCAL_OVERRIDES_PACKAGES := QuickSearchBox

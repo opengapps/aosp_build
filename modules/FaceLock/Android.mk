@@ -10,6 +10,7 @@ include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := FaceLock
 LOCAL_PACKAGE_NAME := com.android.facelock
+LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_SHARED_LIBRARIES := libfilterpack_facedetect $(FACELOCK_JNI_NAME) libfrsdk
 include $(BUILD_GAPPS_PREBUILT_APK)
 

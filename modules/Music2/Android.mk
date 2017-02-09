@@ -3,6 +3,7 @@ include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := Music2
 LOCAL_PACKAGE_NAME := com.google.android.music
+LOCAL_CERTIFICATE := PRESIGNED
 
 GAPPS_LOCAL_OVERRIDES_PACKAGES := Music Eleven
 
