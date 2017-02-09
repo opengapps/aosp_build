@@ -3,5 +3,6 @@ include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := Videos
 LOCAL_PACKAGE_NAME := com.google.android.videos
+LOCAL_CERTIFICATE := PRESIGNED
 
 include $(BUILD_GAPPS_PREBUILT_APK)
