@@ -1,19 +1,18 @@
 # OpenGApps AOSP based build system
 
 ### Disclaimer
-1. *Use this at your own risk.* Cyanogenmod received a cease and desist letter from Google when they included Google Apps in their ROM. See: [A Note on Google Apps for Android](http://android-developers.blogspot.com/2009/09/note-on-google-apps-for-android.html)
-2. While this project places code in `vendor/google/build`, **This project is in no way affiliated with, sponsored by, or related to Google.** Placement of code in `vendor/google/build` is only done because it is required by the AOSP build process (more on that later).
+1. **Use this at your own risk.** Cyanogenmod received a cease and desist letter from Google when they included Google Apps in their ROM. See: [A Note on Google Apps for Android](http://android-developers.blogspot.com/2009/09/note-on-google-apps-for-android.html)
+2. **This project is in no way affiliated with, sponsored by, or related to Google.**
 
 ## Getting started
 **1. Add the build system, and the wanted sources to your manifest.**
 
-Find your manifest file. Check `${ANDROID_BUILD_TOP}/.repo/manifest/`
-
+Find your manifest file (check inside `${ANDROID_BUILD_TOP}/.repo/manifest/`)
 and add the following towards the end:
 ```xml
 <remote name="opengapps" fetch="https://github.com/opengapps/"  />
 
-<project path="vendor/google/build" name="aosp_build" revision="master" remote="opengapps" />
+<project path="vendor/opengapps/build" name="aosp_build" revision="master" remote="opengapps" />
 <project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="opengapps" />
 
 <!-- arm64 depends on arm -->
@@ -33,7 +32,7 @@ GAPPS_VARIANT := <variant>
 
 where `<variant>` is one of the [package types](https://github.com/opengapps/opengapps/wiki/Package-Comparison) in lowercase. E.g:
 
-```
+```makefile
 GAPPS_VARIANT := stock
 ```
 
@@ -43,7 +42,7 @@ The `opengapps-packages.mk` file will make the Android build system build the ne
 
 In `device/manufacturer/product/device.mk` file, towards the end, add:
 ```makefile
-$(call inherit-product, vendor/google/build/opengapps-packages.mk)
+$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
 ```
 
 **4. Build Android**
@@ -54,17 +53,17 @@ You can add packages from versions higher then your set version. E.g. if you wan
 
 In your `device/manufacturer/product/device.mk` just add, for example:
 
-```
+```makefile
 PRODUCT_PACKAGES += Chrome
 ```
 
-This uses the module name. You can find the module name for a package by checking `vendor/google/build/modules/` and look at the `LOCAL_MODULE` value.
+This uses the module name. You can find the module name for a package by checking `vendor/opengapps/build/modules/` and look at the `LOCAL_MODULE` value.
 
 ### Excluding packages
 You can exclude certain packages from the list of packages associated with your selected OpenGapps variant. E.g. if you have `GAPPS_VARIANT := stock`
 and want all those apps installed except for `Hangouts`, then in your `device/manufacturer/product/device.mk` just add:
 
-```
+```makefile
 GAPPS_EXCLUDED_PACKAGES := Hangouts
 ```
 
@@ -74,44 +73,44 @@ This can be defined in two ways inside `device/manufacturer/product/device.mk`.
 
 For all package:
 
-```
+```makefile
 GAPPS_FORCE_PACKAGE_OVERRIDES := true
 ```
 
 If you want to include WebViewGoogle on a non-stock build you need:
 
-```
+```makefile
 GAPPS_FORCE_WEBVIEW_OVERRIDES := true
 ```
 
 If you want to include Messenger on a non-stock build you need:
 
-```
+```makefile
 GAPPS_FORCE_MMS_OVERRIDES := true
 ```
 
 If you want to include Google Dialer on a non-stock build you need:
 
-```
+```makefile
 GAPPS_FORCE_DIALER_OVERRIDES := true
 ```
 
 If you want to include Chrome on a non-full build you need:
 
-```
+```makefile
 GAPPS_FORCE_BROWSER_OVERRIDES := true
 ```
 
 If you want use PixelLauncher overriding GoogleHome you need:
 
-```
+```makefile
 GAPPS_FORCE_PIXEL_LAUNCHER := true
 ```
 
 On a per-app basis, add the GApps package to `GAPPS_PACKAGE_OVERRIDES`.
 Example:
 
-```
+```makefile
 GAPPS_PACKAGE_OVERRIDES := Chrome
 ```
 
@@ -120,7 +119,7 @@ You can tell the GApps packages not to override the stock packages.
 This can be defined inside `device/manufacturer/product/device.mk` by adding the GApps package to `GAPPS_BYPASS_PACKAGE_OVERRIDES`.
 Example:
 
-```
+```makefile
 GAPPS_BYPASS_PACKAGE_OVERRIDES := Chrome
 ```
 
@@ -130,7 +129,7 @@ You can force the system to select either a matching DPI package or "nodpi" pack
 
 This can be defined inside `device/manufacturer/product/device.mk` using:
 
-```
+```makefile
 GAPPS_FORCE_MATCHING_DPI := true
 ```
 
@@ -138,37 +137,32 @@ GAPPS_FORCE_MATCHING_DPI := true
 It is possible to build Android with dex preoptimization. This results in a quicker boot time, at the cost of additional storage used on `/system`.
 
 This is normally done by setting the value:
-```
+```makefile
 WITH_DEXPREOPT := true
 ```
 
 in `BoardConfig.mk`. This will, by default, if set to true, also enable DEX Preoptimization for Google Apps.
 
 You can disable this entirely by setting:
-```
+```makefile
 DONT_DEXPREOPT_PREBUILTS := true
 ```
 
 ## How it works
-The OpenGApps AOSP based build system is placed in `vendor/google/build` and includes a file called `config.mk`. This is loaded by the AOSP build system very early, and allows us to define the necessary "functions" and build targets.
 
-in `build/core/main.mk`:
-```
-# Include the google-specific config
--include vendor/google/build/config.mk
-```
+When building in an AOSP tree, the build system processes the file `device/manufacturer/product/device.mk` very early, which means that the file `vendor/opengapps/build/opengapps-packages.mk` is also processed very early.
+This causes two special build "functions" (generic build rules) to be defined before any Android.mk files are read:
 
-We use this hook to define two targets:
-```
+```makefile
 BUILD_GAPPS_PREBUILT_APK # - for apps
 BUILD_GAPPS_PREBUILT_SHARED_LIBRARY # - for shared libraries
 ```
 
-These use the already existing AOSP build infrastructure for prebuilt APKs and SHARED_LIBRARYs, but removes a lot of the boilerplate.
+The definitions use the already existing AOSP build infrastructure for prebuilt APKs and SHARED_LIBRARYs, but remove a lot of the boilerplate.
 
-These two targets take care of locating the correct APK/libraries in an architecture-independent way. The AOSP based build system already prioritizes SoC architecture. E.g. if it finds an apk in `sources/arm64` and `sources/arm`, it will automatically prioritize `sources/arm64`.
+The build rules take care of locating the correct APK/libraries in an architecture-independent way. The AOSP based build system already prioritizes SoC architecture. E.g. if it finds an apk in `sources/arm64` and `sources/arm`, it will automatically prioritize `sources/arm64`.
 
-The APK target will also scan the APK for any libraries, and if it finds libraries it will get the AOSP build system to automatically extract them and place them at the expected place.
+The APK rule will also scan the APK for any libraries, and if it finds libraries it will get the AOSP build system to automatically extract them and place them at the expected place.
 
 ## Caveats
 ### Some modules are missing overrides
@@ -178,7 +172,7 @@ Pull requests to add package overrides for more modules is welcome. See `modules
 
 ### Chrome on Lollipop requires an extra patch
 Run these commands:
-```
+```bash
 cd build
 curl https://raw.githubusercontent.com/opengapps/aosp_build/master/patches/Lollipop/0001-Fix-Chrome.patch | git am -
 ```

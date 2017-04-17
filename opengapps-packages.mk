@@ -1,9 +1,6 @@
-include vendor/google/build/config.mk
-include $(GAPPS_FILES)
-
-ifeq ($(GAPPS_VARIANT),)
-  $(error GAPPS_VARIANT must be configured)
-endif
+include vendor/opengapps/build/core/definitions.mk
+include vendor/opengapps/build/config.mk
+include vendor/opengapps/build/opengapps-files.mk
 
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
