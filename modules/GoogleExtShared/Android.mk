@@ -4,4 +4,7 @@ include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := GoogleExtShared
 LOCAL_PACKAGE_NAME := com.google.android.ext.shared
 
+GAPPS_LOCAL_OVERRIDES_MIN_VARIANT :=
+GAPPS_LOCAL_OVERRIDES_PACKAGES := ExtShared
+
 include $(BUILD_GAPPS_PREBUILT_APK)
