@@ -30,7 +30,6 @@ endif
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
 GAPPS_PRODUCT_PACKAGES += \
     FaceLock \
-    HotwordEnrollment \
     Velvet
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),micro),) # require at least micro
