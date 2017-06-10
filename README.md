@@ -60,6 +60,14 @@ PRODUCT_PACKAGES += Chrome
 
 This uses the module name. You can find the module name for a package by checking `vendor/google/build/modules/` and look at the `LOCAL_MODULE` value.
 
+If you need to include more than one module in `PRODUCT_PACKAGES`, separate the names with a space. You may also put them on separate lines, with each line terminated by a back slash. For example:
+
+```
+PRODUCT_PACKAGES += Chrome \
+    Maps \
+    GoogleEarth
+```
+
 ### Excluding packages
 You can exclude certain packages from the list of packages associated with your selected OpenGapps variant. E.g. if you have `GAPPS_VARIANT := stock`
 and want all those apps installed except for `Hangouts`, then in your `device/manufacturer/product/device.mk` just add:
