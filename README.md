@@ -7,7 +7,7 @@
 ## Getting started
 **1. Add the build system, and the wanted sources to your manifest.**
 
-Find your manifest file. Check `${ANDROID_BUILD_TOP}/.repo/manifest/`
+Find your manifest file. Check `${ANDROID_BUILD_TOP}/.repo/manifest/`. There may be a linked document in `${ANDROID_BUILD_TOP}/.repo/manifest.xml` that points to another location, such as `${ANDROID_BUILD_TOP}/.repo/manifests/default.xml`. The file you should edit should not be blank and should have several hundred lines.
 
 and add the following towards the end:
 ```xml
