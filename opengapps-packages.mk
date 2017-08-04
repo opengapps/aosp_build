@@ -27,6 +27,11 @@ GAPPS_PRODUCT_PACKAGES += \
     GooglePackageInstaller
 endif
 
+ifneq ($(filter $(call get-allowed-api-levels),24),)
+GAPPS_PRODUCT_PACKAGES += \
+    PrebuiltGmsCoreInstantApps
+endif
+
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
 GAPPS_PRODUCT_PACKAGES += \
     FaceLock \
