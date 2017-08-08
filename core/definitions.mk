@@ -24,6 +24,7 @@ define get-gapps-variant
 $(strip \
 $(if $(filter $(1),pico),pico) \
 $(if $(filter $(1),nano),pico nano) \
+$(if $(filter $(1),tvstock),tvstock) \
 $(if $(filter $(1),micro),pico nano micro) \
 $(if $(filter $(1),mini),pico nano micro mini) \
 $(if $(filter $(1),full),pico nano micro mini full) \

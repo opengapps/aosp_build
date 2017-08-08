@@ -42,7 +42,7 @@ include $(GAPPS_BUILD_SYSTEM_PATH)/definitions.mk
 GAPPS_VARIANT_EVAL := $(call get-gapps-variant,$(GAPPS_VARIANT))
 
 ifeq ($(GAPPS_VARIANT_EVAL),)
-  $(error GAPPS_VARIANT $(GAPPS_VARIANT) was not found. Use of one of pico,nano,micro,mini,full,stock,super)
+  $(error GAPPS_VARIANT $(GAPPS_VARIANT) was not found. Use of one of pico,nano,micro,mini,full,stock,super,tvstock)
 endif
 
 TARGET_GAPPS_VARIANT := $(GAPPS_VARIANT_EVAL)

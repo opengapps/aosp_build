@@ -11,15 +11,9 @@ DEVICE_PACKAGE_OVERLAYS += \
 GAPPS_PRODUCT_PACKAGES += \
     GoogleBackupTransport \
     GoogleContactsSyncAdapter \
-    GoogleFeedback \
-    GoogleOneTimeInitializer \
-    GooglePartnerSetup \
-    PrebuiltGmsCore \
     GoogleServicesFramework \
-    GoogleLoginService \
-    SetupWizard \
-    Phonesky \
     GoogleCalendarSyncAdapter
+
 
 ifneq ($(filter $(call get-allowed-api-levels),23),)
 GAPPS_PRODUCT_PACKAGES += \
@@ -27,10 +21,19 @@ GAPPS_PRODUCT_PACKAGES += \
     GooglePackageInstaller
 endif
 
+
+
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
 GAPPS_PRODUCT_PACKAGES += \
     FaceLock \
-    Velvet
+    Velvet \
+    PrebuiltGmsCore \
+    GoogleFeedback \
+    GoogleOneTimeInitializer \
+    GooglePartnerSetup \
+    GoogleLoginService \
+    SetupWizard \
+    Phonesky
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),micro),) # require at least micro
 GAPPS_PRODUCT_PACKAGES += \
@@ -117,6 +120,46 @@ endif # end mini
 endif # end micro
 endif # end nano
 
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),tvstock),)
+
+GAPPS_PRODUCT_PACKAGES += \
+    BugReportSender \
+    ConfigUpdater \
+    NoTouchAuthDelegate \
+    PrebuiltGmsCorePano \
+    Tubesky \
+    Backdrop \
+    AndroidMediaShell \
+    GlobalKeyInterceptor \
+    TV \
+    Overscan \
+    RemoteControlService \
+    SecondScreenSetup \
+    SecondScreenSetupAuthBridge \
+    talkback \
+    AtvCustomization \
+    LeanbackLauncher \
+    LeanbackIme \
+    VideosPano \
+    Music2Pano \
+    CanvasPackageInstaller \
+    PlayGames \
+    Katniss \
+    AtvWidget \
+    YouTubeLeanback \
+    SetupWraith \
+    AtvRemoteService
+
+ifneq ($(filter $(call get-allowed-api-levels),24),)
+GAPPS_PRODUCT_PACKAGES += \
+    GooglePrintRecommendationService \
+    GoogleExtServices \
+    GoogleExtShared \
+    LandscapeWallpaper
+endif
+
+endif # end tvstock
+
 # This needs to be at the end of standard files, but before the GAPPS_FORCE_* options,
 # since those also affect DEVICE_PACKAGE_OVERLAYS. We don't want to exclude a package
 # that also has an overlay, since that will make us use the overlay but not have the
@@ -134,6 +177,8 @@ endif
 PRODUCT_PACKAGES += \
     WebViewGoogle
 endif
+
+ifneq ($(filter $(TARGET_GAPPS_VARIANT),pico),) # Not on tvstock
 
 ifeq ($(GAPPS_FORCE_BROWSER_OVERRIDES),true)
 ifneq ($(filter $(call get-allowed-api-levels),23),)
@@ -178,3 +223,5 @@ PRODUCT_PACKAGES += \
     PixelLauncher \
     Wallpapers
 endif
+
+endif # Not on tvstock
