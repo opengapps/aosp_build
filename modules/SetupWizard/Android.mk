@@ -1,7 +1,7 @@
 LOCAL_PATH := .
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
-LOCAL_CERTIFICATE := platform
+LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_MODULE := SetupWizard
 ifeq ($(filter $(call get-allowed-api-levels),21),)
   # kitkat
