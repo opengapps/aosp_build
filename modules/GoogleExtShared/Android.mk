@@ -1,6 +1,7 @@
 LOCAL_PATH := .
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
+LOCAL_CERTIFICATE := platform
 LOCAL_MODULE := GoogleExtShared
 LOCAL_PACKAGE_NAME := com.google.android.ext.shared
 

@@ -1,6 +1,7 @@
 LOCAL_PATH := .
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
+LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_MODULE := GoogleContacts
 LOCAL_PACKAGE_NAME := com.google.android.contacts
 LOCAL_PRIVILEGED_MODULE := true

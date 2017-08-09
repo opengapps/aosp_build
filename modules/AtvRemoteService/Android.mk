@@ -1,6 +1,7 @@
 LOCAL_PATH := .
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
+LOCAL_CERTIFICATE := platform
 LOCAL_MODULE := AtvRemoteService
 ifneq ($(filter $(call get-allowed-api-levels),24),)
 LOCAL_PACKAGE_NAME := com.google.android.tv.remote.service.leanback
@@ -14,6 +15,7 @@ include $(BUILD_GAPPS_PREBUILT_APK)
 
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
+LOCAL_CERTIFICATE := platform
 LOCAL_MODULE_SUFFIX := $(TARGET_SHLIB_SUFFIX)
 LOCAL_MODULE := libatv_uinputbridge
 full_name := $(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
