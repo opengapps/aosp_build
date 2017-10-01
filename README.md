@@ -107,6 +107,12 @@ If you want use PixelLauncher overriding GoogleHome you need:
 GAPPS_FORCE_PIXEL_LAUNCHER := true
 ```
 
+If you want use Round Icons API you need:
+
+```makefile
+GAPPS_FORCE_ROUND_ICONS := true
+```
+
 On a per-app basis, add the GApps package to `GAPPS_PACKAGE_OVERRIDES`.
 Example:
 
