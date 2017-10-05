@@ -29,6 +29,11 @@ GAPPS_PRODUCT_PACKAGES += \
     PrebuiltGmsCoreInstantApps
 endif
 
+ifneq ($(filter $(call get-allowed-api-levels),25),)
+GAPPS_PRODUCT_PACKAGES += \
+    Turbo
+endif
+
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
 # support only arm based platforms
 ifneq ($(filter arm%, $(TARGET_ARCH)),)
