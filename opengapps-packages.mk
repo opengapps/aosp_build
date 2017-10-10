@@ -178,8 +178,13 @@ GAPPS_EXCLUDED_PACKAGES += \
     GoogleHome
 
 ifneq ($(filter $(call get-allowed-api-levels),25),)
+ifneq ($(filter-out $(call get-allowed-api-levels),26),)
 DEVICE_PACKAGE_OVERLAYS += \
-    $(GAPPS_DEVICE_FILES_PATH)/overlay/pixelicons
+    $(GAPPS_DEVICE_FILES_PATH)/overlay/pixelicons/25
+else
+DEVICE_PACKAGE_OVERLAYS += \
+    $(GAPPS_DEVICE_FILES_PATH)/overlay/pixelicons/26
+endif
 
 PRODUCT_PACKAGES += \
     PixelLauncherIcons
