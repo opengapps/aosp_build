@@ -44,7 +44,7 @@ endif
 
 ifneq ($(filter nano,$(TARGET_GAPPS_VARIANT)),) # require at least nano
 # support only arm based platforms
-ifneq ($(filter arm64, $(TARGET_ARCH)),)
+ifneq ($(filter arm%, $(TARGET_ARCH)),)
 GAPPS_PRODUCT_PACKAGES += \
     FaceLock
 endif
