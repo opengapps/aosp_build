@@ -33,16 +33,12 @@ GAPPS_PRODUCT_PACKAGES += \
     Turbo
 endif
 
-# api26hack
+# api26
 ifneq ($(filter $(call get-allowed-api-levels),26),)
-# We have only arm64 package at the moment, so
 ifneq ($(filter $(TARGET_ARCH),arm64),)
 GAPPS_PRODUCT_PACKAGES += \
     AndroidPlatformServices
 endif
-else
-GAPPS_PRODUCT_PACKAGES += \
-    GoogleLoginService
 endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
