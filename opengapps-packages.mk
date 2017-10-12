@@ -18,52 +18,52 @@ GAPPS_PRODUCT_PACKAGES += \
     Phonesky \
     GoogleCalendarSyncAdapter
 
-ifneq ($(filter 23,$(call get-allowed-api-levels)))
+ifneq ($(filter 23,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     GoogleTTS \
     GooglePackageInstaller
 endif
 
-ifneq ($(filter 24,$(call get-allowed-api-levels)))
+ifneq ($(filter 24,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     PrebuiltGmsCoreInstantApps
 endif
 
-ifneq ($(filter 25,$(call get-allowed-api-levels)))
+ifneq ($(filter 25,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     Turbo
 endif
 
 # api26
-ifneq ($(filter 26,$(call get-allowed-api-levels)))
-ifneq ($(filter arm64,$(TARGET_ARCH)))
+ifneq ($(filter 26,$(call get-allowed-api-levels)),)
+ifneq ($(filter arm64,$(TARGET_ARCH)),)
 GAPPS_PRODUCT_PACKAGES += \
     AndroidPlatformServices
 endif
 endif
 
-ifneq ($(filter nano,$(TARGET_GAPPS_VARIANT))) # require at least nano
+ifneq ($(filter nano,$(TARGET_GAPPS_VARIANT)),) # require at least nano
 # support only arm based platforms
-ifneq ($(filter arm%, $(TARGET_ARCH)),)
+ifneq ($(filter arm64, $(TARGET_ARCH)),)
 GAPPS_PRODUCT_PACKAGES += \
     FaceLock
 endif
 GAPPS_PRODUCT_PACKAGES += \
     Velvet
 
-ifneq ($(filter micro,$(TARGET_GAPPS_VARIANT))) # require at least micro
+ifneq ($(filter micro,$(TARGET_GAPPS_VARIANT)),) # require at least micro
 GAPPS_PRODUCT_PACKAGES += \
     CalendarGooglePrebuilt \
     PrebuiltExchange3Google \
     PrebuiltGmail \
     GoogleHome
 
-ifeq ($(filter 23,$(call get-allowed-api-levels)))
+ifeq ($(filter 23,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     GoogleTTS
 endif
 
-ifneq ($(filter mini,$(TARGET_GAPPS_VARIANT))) # require at least mini
+ifneq ($(filter mini,$(TARGET_GAPPS_VARIANT)),) # require at least mini
 GAPPS_PRODUCT_PACKAGES += \
     CalculatorGoogle \
     PrebuiltDeskClockGoogle \
@@ -73,7 +73,7 @@ GAPPS_PRODUCT_PACKAGES += \
     Photos \
     YouTube
 
-ifneq ($(filter full,$(TARGET_GAPPS_VARIANT))) # require at least full
+ifneq ($(filter full,$(TARGET_GAPPS_VARIANT)),) # require at least full
 
 GAPPS_FORCE_BROWSER_OVERRIDES := true
 GAPPS_PRODUCT_PACKAGES += \
@@ -92,7 +92,7 @@ GAPPS_PRODUCT_PACKAGES += \
     EditorsSlides \
     talkback
 
-ifneq ($(filter stock,$(TARGET_GAPPS_VARIANT))) # require at least stock
+ifneq ($(filter stock,$(TARGET_GAPPS_VARIANT)),) # require at least stock
 
 GAPPS_FORCE_MMS_OVERRIDES := true
 GAPPS_FORCE_WEBVIEW_OVERRIDES := true
@@ -103,17 +103,17 @@ GAPPS_PRODUCT_PACKAGES += \
     TagGoogle \
     GoogleVrCore
 
-ifneq ($(filter 23,$(call get-allowed-api-levels)))
+ifneq ($(filter 23,$(call get-allowed-api-levels)),)
 GAPPS_FORCE_DIALER_OVERRIDES := true
 endif
-ifneq ($(filter 24,$(call get-allowed-api-levels)))
+ifneq ($(filter 24,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     GooglePrintRecommendationService \
     GoogleExtServices \
     GoogleExtShared
 endif
 
-ifneq ($(filter stock,$(TARGET_GAPPS_VARIANT)))
+ifneq ($(filter super,$(TARGET_GAPPS_VARIANT)),)
 
 GAPPS_PRODUCT_PACKAGES += \
     Wallet \
@@ -155,7 +155,7 @@ PRODUCT_PACKAGES += \
 endif
 
 ifeq ($(GAPPS_FORCE_BROWSER_OVERRIDES),true)
-ifneq ($(filter 23,$(call get-allowed-api-levels)))
+ifneq ($(filter 23,$(call get-allowed-api-levels)),)
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/browser
 endif
@@ -163,7 +163,7 @@ PRODUCT_PACKAGES += \
     Chrome
 endif
 
-ifneq ($(filter 23,$(call get-allowed-api-levels)))
+ifneq ($(filter 23,$(call get-allowed-api-levels)),)
 ifeq ($(GAPPS_FORCE_DIALER_OVERRIDES),true)
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/dialer
@@ -185,8 +185,8 @@ ifeq ($(GAPPS_FORCE_PIXEL_LAUNCHER),true)
 GAPPS_EXCLUDED_PACKAGES += \
     GoogleHome
 
-ifneq ($(filter 25,$(call get-allowed-api-levels)))
-ifneq ($(filter-out 26,$(call get-allowed-api-levels)))
+ifneq ($(filter 25,$(call get-allowed-api-levels)),)
+ifneq ($(filter-out 26,$(call get-allowed-api-levels)),)
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/pixelicons/25
 else
