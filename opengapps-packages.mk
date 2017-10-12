@@ -13,6 +13,7 @@ GAPPS_PRODUCT_PACKAGES += \
     GooglePartnerSetup \
     PrebuiltGmsCore \
     GoogleServicesFramework \
+    GoogleLoginService \
     SetupWizard \
     Phonesky \
     GoogleCalendarSyncAdapter
