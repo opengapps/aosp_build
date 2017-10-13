@@ -36,12 +36,8 @@ GAPPS_PRODUCT_PACKAGES += \
 endif
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),nano),) # require at least nano
-# support only arm based platforms
-ifneq ($(filter arm%, $(TARGET_ARCH)),)
 GAPPS_PRODUCT_PACKAGES += \
-    FaceLock
-endif
-GAPPS_PRODUCT_PACKAGES += \
+    FaceLock \
     Velvet
 
 ifneq ($(filter $(TARGET_GAPPS_VARIANT),micro),) # require at least micro
