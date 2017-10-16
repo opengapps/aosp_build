@@ -1,3 +1,4 @@
+ifneq ($(filter arm%, $(TARGET_ARCH)),)
 # libfacelock_jni.so was renamed to libfacenet.so in Nougat+
 ifeq ($(filter $(call get-allowed-api-levels),24),)
 FACELOCK_JNI_NAME := libfacelock_jni
@@ -31,3 +32,4 @@ include $(BUILD_GAPPS_PREBUILT_SHARED_LIBRARY)
 
 # Cleanup temp variable
 FACELOCK_JNI_NAME :=
+endif
