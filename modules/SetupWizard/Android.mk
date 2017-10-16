@@ -2,12 +2,12 @@ LOCAL_PATH := .
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := SetupWizard
-ifeq ($(filter $(call get-allowed-api-levels),21),)
+ifeq ($(filter 21,$(call get-allowed-api-levels)),)
   # kitkat
   LOCAL_PACKAGE_NAME := com.google.android.setupwizard
 else
   # LP and newer
-  ifneq ($(filter $(PRODUCT_CHARACTERISTICS),tablet),)
+  ifneq ($(filter tablet,$(PRODUCT_CHARACTERISTICS)),)
     LOCAL_PACKAGE_NAME := com.google.android.setupwizard.tablet
   else 
     LOCAL_PACKAGE_NAME := com.google.android.setupwizard.default
