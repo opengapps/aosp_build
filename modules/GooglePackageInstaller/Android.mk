@@ -2,7 +2,7 @@ LOCAL_PATH := .
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := GooglePackageInstaller
-ifneq ($(filter $(PRODUCT_CHARACTERISTICS),tv),)
+ifneq ($(filter tv,$(PRODUCT_CHARACTERISTICS)),)
         LOCAL_PACKAGE_NAME := com.google.android.pano.packageinstaller
 else
         LOCAL_PACKAGE_NAME := com.google.android.packageinstaller

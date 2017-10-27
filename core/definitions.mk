@@ -19,7 +19,7 @@ $(shell "$(GAPPS_BUILD_SYSTEM_PATH)/find_apk.sh" "$(GAPPS_SOURCES_PATH)" "$(PLAT
 endef
 
 define get-lib-search-path
-$(if $(filter $(1),arm),lib/armeabi*/*,lib/$(1)*/*)
+$(if $(filter arm,$(1)),lib/armeabi*/*,lib/$(1)*/*)
 endef
 
 define find-libs-in-apk
@@ -28,13 +28,13 @@ endef
 
 define get-gapps-variant
 $(strip \
-$(if $(filter $(1),pico),pico) \
-$(if $(filter $(1),nano),pico nano) \
-$(if $(filter $(1),micro),pico nano micro) \
-$(if $(filter $(1),mini),pico nano micro mini) \
-$(if $(filter $(1),full),pico nano micro mini full) \
-$(if $(filter $(1),stock),pico nano micro mini full stock) \
-$(if $(filter $(1),super),pico nano micro mini full stock super) \
+$(if $(filter pico, $(1)),pico) \
+$(if $(filter nano, $(1)),pico nano) \
+$(if $(filter micro,$(1)),pico nano micro) \
+$(if $(filter mini, $(1)),pico nano micro mini) \
+$(if $(filter full, $(1)),pico nano micro mini full) \
+$(if $(filter stock,$(1)),pico nano micro mini full stock) \
+$(if $(filter super,$(1)),pico nano micro mini full stock super) \
 )
 endef
 
