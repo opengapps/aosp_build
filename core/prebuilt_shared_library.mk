@@ -31,7 +31,7 @@ ifdef TARGET_2ND_ARCH
   LOCAL_SRC_FILES_32 := $(call gapps-find-lib-for-arch,$(TARGET_2ND_ARCH),$(lib_prefix)lib,$(full_name))
 else
   LOCAL_SRC_FILES := $(call gapps-find-lib-for-arch,$(TARGET_ARCH),$(lib_prefix)lib,$(full_name))
-  ifeq ($(filter $(call get-allowed-api-levels), 21),)
+  ifeq ($(filter 21,$(call get-allowed-api-levels)),)
     # kitkat only
     ifeq ($(LOCAL_SRC_FILES),$(join $(GAPPS_SOURCES_PATH),/))
       # find libraries from lib/19/lib_from_app
@@ -46,7 +46,7 @@ is_vendor_lib :=
 lib_prefix :=
 full_name :=
 
-ifeq ($(filter $(call get-allowed-api-levels), 21),)
+ifeq ($(filter 21,$(call get-allowed-api-levels)),)
   # kitkat only
   mid := MODULE.$(if $(LOCAL_IS_HOST_MODULE),HOST,TARGET).$(LOCAL_MODULE_CLASS).$(LOCAL_MODULE)
   ifndef $(mid)

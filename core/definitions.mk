@@ -1,3 +1,9 @@
+# this file is explicitly included by opengapps-packages.mk, but it
+# also gets automatically included by the aosp build system.  To
+# prevent the defines below from being automatically set even for
+# devices that do not have opengapps configured, we use an "ifneq"
+# guard.  Alternatively, we could rename this file to something like
+# "defines.mk".
 ifneq ($(GAPPS_VARIANT),)
 
 define get-allowed-api-levels
@@ -13,7 +19,7 @@ $(shell "$(GAPPS_BUILD_SYSTEM_PATH)/find_apk.sh" "$(GAPPS_SOURCES_PATH)" "$(PLAT
 endef
 
 define get-lib-search-path
-$(if $(filter $(1),arm),lib/armeabi*/*,lib/$(1)*/*)
+$(if $(filter arm,$(1)),lib/armeabi*/*,lib/$(1)*/*)
 endef
 
 define find-libs-in-apk
@@ -22,14 +28,14 @@ endef
 
 define get-gapps-variant
 $(strip \
-$(if $(filter $(1),pico),pico) \
-$(if $(filter $(1),nano),pico nano) \
-$(if $(filter $(1),tvstock),tvstock) \
-$(if $(filter $(1),micro),pico nano micro) \
-$(if $(filter $(1),mini),pico nano micro mini) \
-$(if $(filter $(1),full),pico nano micro mini full) \
-$(if $(filter $(1),stock),pico nano micro mini full stock) \
-$(if $(filter $(1),super),pico nano micro mini full stock super) \
+$(if $(filter pico, $(1)),pico) \
+$(if $(filter nano, $(1)),pico nano) \
+$(if $(filter tvstock,$(1)),tvstock) \
+$(if $(filter micro,$(1)),pico nano micro) \
+$(if $(filter mini, $(1)),pico nano micro mini) \
+$(if $(filter full, $(1)),pico nano micro mini full) \
+$(if $(filter stock,$(1)),pico nano micro mini full stock) \
+$(if $(filter super,$(1)),pico nano micro mini full stock super) \
 )
 endef
 
@@ -50,8 +56,5 @@ define gapps-find-lib-for-kitkat
 $(join $(GAPPS_SOURCES_PATH)/,$(shell cd "$(GAPPS_SOURCES_PATH)"; \
 	find -L $(join arm/lib/19/lib_from_app/,$(1)) 2>/dev/null | tail -n1))
 endef
-
-BUILD_GAPPS_PREBUILT_APK := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_apk.mk
-BUILD_GAPPS_PREBUILT_SHARED_LIBRARY := $(GAPPS_BUILD_SYSTEM_PATH)/prebuilt_shared_library.mk
 
 endif
