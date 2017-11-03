@@ -147,7 +147,6 @@ GAPPS_PRODUCT_PACKAGES += \
     SecondScreenSetup \
     SecondScreenSetupAuthBridge \
     talkback \
-    AtvCustomization \
     LeanbackLauncher \
     LeanbackIme \
     VideosPano \
