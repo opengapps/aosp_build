@@ -27,7 +27,6 @@ include $(BUILD_GAPPS_PREBUILT_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := libfrsdk
-GAPPS_IS_VENDOR_LIB := true
 include $(BUILD_GAPPS_PREBUILT_SHARED_LIBRARY)
 
 # Cleanup temp variable
