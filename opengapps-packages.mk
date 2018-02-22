@@ -6,7 +6,6 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
 
 GAPPS_PRODUCT_PACKAGES += \
-    Feedback \
     GoogleBackupTransport \
     GoogleContactsSyncAdapter \
     GoogleFeedback \
