@@ -163,8 +163,7 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/dialer
 
 PRODUCT_PACKAGES += \
-    GoogleDialer \
-    GoogleDialer_dialer_experience.xml
+    GoogleDialer
 endif
 endif
 
