@@ -46,10 +46,10 @@ else
   endif
 endif
 
-include $(BUILD_PREBUILT)
-
 # generate mk file of shared library for kitkat
 ifdef LOCAL_SRC_FILES
+  include $(BUILD_PREBUILT)
+
   ifeq ($(filter 21,$(call get-allowed-api-levels)),)
     ifneq ($(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES)),)
       $(shell unzip -qqq -j -o "$(LOCAL_SRC_FILES)" "$(call get-lib-search-path, $(TARGET_ARCH))" -x lib/*/crazy/* -d "$(GAPPS_SOURCES_PATH)"/$(TARGET_ARCH)/lib/19/lib_from_app 2>/dev/null)
