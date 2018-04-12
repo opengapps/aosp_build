@@ -46,6 +46,10 @@ else
   endif
 endif
 
+ifndef LOCAL_SRC_FILES
+  $(error Unable to find APK for $(LOCAL_MODULE))
+endif
+
 include $(BUILD_PREBUILT)
 
 # generate mk file of shared library for kitkat
