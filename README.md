@@ -54,7 +54,7 @@ You can add packages from versions higher then your set version. E.g. if you wan
 In your `device/manufacturer/product/device.mk` just add, for example:
 
 ```makefile
-PRODUCT_PACKAGES += Chrome
+GAPPS_PRODUCT_PACKAGES += Chrome
 ```
 
 This uses the module name. You can find the module name for a package by checking `vendor/opengapps/build/modules/` and look at the `LOCAL_MODULE` value.

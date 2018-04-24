@@ -47,7 +47,15 @@ else
 endif
 
 ifndef LOCAL_SRC_FILES
-  $(error Unable to find APK for $(LOCAL_MODULE))
+# the three calls to find-apk-for-pkg above all failed.
+# emit an error if the module is in the set GAPPS_PRODUCT_PACKAGES - GAPPS_EXCLUDED_PACKAGES
+ifneq (,$(filter $(LOCAL_MODULE),$(GAPPS_PRODUCT_PACKAGES)))
+ifeq  (,$(filter $(LOCAL_MODULE),$(GAPPS_EXCLUDED_PACKAGES)))
+  $(warning Unable to find an architecture compatible APK for package $(LOCAL_PACKAGE_NAME) defined in module $(LOCAL_MODULE).)
+  $(warning You can try using GAPPS_EXCLUDED_PACKAGES += $(LOCAL_MODULE) to get past this error.)
+  $(error Invalid build module: $(LOCAL_MODULE))
+endif
+endif
 endif
 
 include $(BUILD_PREBUILT)
