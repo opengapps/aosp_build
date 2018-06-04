@@ -40,6 +40,7 @@ else
     ifdef TARGET_2ND_ARCH
       LOCAL_SRC_FILES := $(call find-apk-for-pkg,$(TARGET_2ND_ARCH),$(LOCAL_PACKAGE_NAME))
       ifdef LOCAL_SRC_FILES
+        LOCAL_MODULE_TARGET_ARCH := $(TARGET_2ND_ARCH)
         LOCAL_PREBUILT_JNI_LIBS_$(TARGET_2ND_ARCH) := $(call find-libs-in-apk,$(TARGET_2ND_ARCH),$(LOCAL_SRC_FILES))
       endif
     endif
