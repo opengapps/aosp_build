@@ -2,9 +2,6 @@ include vendor/opengapps/build/core/definitions.mk
 include vendor/opengapps/build/config.mk
 include vendor/opengapps/build/opengapps-files.mk
 
-DEVICE_PACKAGE_OVERLAYS += \
-    $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
-
 GAPPS_PRODUCT_PACKAGES += \
     GoogleBackupTransport \
     GoogleContactsSyncAdapter \
@@ -129,6 +126,9 @@ endif # end nano
 # that also has an overlay, since that will make us use the overlay but not have the
 # package. This can cause issues.
 PRODUCT_PACKAGES += $(filter-out $(GAPPS_EXCLUDED_PACKAGES),$(GAPPS_PRODUCT_PACKAGES))
+
+DEVICE_PACKAGE_OVERLAYS += \
+    $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
 
 ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
 # starting with nougat, use a different overlay
