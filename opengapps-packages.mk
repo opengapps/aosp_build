@@ -24,9 +24,14 @@ GAPPS_PRODUCT_PACKAGES += \
     GooglePackageInstaller
 endif
 
+## in oreo (api level 26), installing PrebuiltGmsCoreInstantApps
+## causes Play Store app-installs to get stuck on "Download
+## pending...".  Do not install on oreo and above.
+ifeq ($(filter 26,$(call get-allowed-api-levels)),)
 ifneq ($(filter 24,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     PrebuiltGmsCoreInstantApps
+endif
 endif
 
 ifneq ($(filter 25,$(call get-allowed-api-levels)),)
