@@ -2,6 +2,152 @@ include vendor/opengapps/build/core/definitions.mk
 include vendor/opengapps/build/config.mk
 include vendor/opengapps/build/opengapps-files.mk
 
+# the logic here roughly corresponds to what is done in
+# installer.sh from the opengapps install zips.
+
+### begin installer.sh variables
+
+# the variables below are used to construct a list of modules to
+# install.  names prefixed with xxx do not correspond to modules in
+# aosp_build -- they are handle differently.
+
+core_gapps_list := \
+defaultetc \
+defaultframework \
+googlebackuptransport \
+googlecontactssyncadapter \
+googlefeedback \
+googleonetimeinitializer \
+googlepartnersetup \
+gmscore \
+gsfcore \
+vending \
+setupwizarddefault \
+setupwizardtablet \
+configupdater \
+extservicesgoogle \
+extsharedgoogle \
+gmssetup \
+androidplatformservices
+
+super_gapps_list := \
+dmagent \
+earth \
+gcs \
+googlepay \
+indic \
+japanese \
+korean \
+pinyin \
+projectfi \
+street \
+translate \
+zhuyin \
+carrierservices
+
+stock_gapps_list := \
+cameragoogle \
+duo \
+hangouts \
+keyboardgoogle \
+vrservice \
+wallpapers \
+contactsgoogle \
+webviewgoogle \
+dialergoogle \
+pixellauncher \
+printservicegoogle \
+storagemanagergoogle \
+pixelicons
+
+full_gapps_list := \
+books \
+chrome \
+cloudprint \
+docs \
+drive \
+fitness \
+googleplus \
+keep \
+movies \
+music \
+newsstand \
+newswidget \
+playgames \
+sheets \
+slides \
+talkback
+
+mini_gapps_list := \
+clockgoogle \
+maps \
+messenger \
+photos \
+youtube \
+calculatorgoogle \
+taggoogle
+
+micro_gapps_list := \
+calendargoogle \
+exchangegoogle \
+gmail \
+googlenow
+
+nano_gapps_list := \
+facedetect \
+faceunlock \
+search \
+speech \
+batteryusage
+
+pico_gapps_list := \
+calsync \
+dialerframework \
+googletts \
+packageinstallergoogle
+
+tvcore_gapps_list := \
+configupdater \
+googlebackuptransport \
+googlecontactssync \
+gsfcore \
+notouch \
+tvetc \
+tvframework \
+tvgmscore \
+tvvending \
+extservicesgoogle \
+extsharedgoogle
+
+tvstock_gapps_list := \
+backdrop \
+castreceiver \
+leanbacklauncher \
+livechannels \
+overscan \
+secondscreensetup \
+secondscreenauthbridge \
+talkback \
+tvkeyboardgoogle \
+tvmovies \
+tvmusic \
+tvpackageinstallergoogle \
+tvplaygames \
+tvremote \
+tvsearch \
+tvwidget \
+tvyoutube \
+tvwallpaper \
+webviewgoogle \
+packageinstallergoogle \
+leanbackrecommendations \
+setupwraith \
+tvlauncher \
+tvrecommendations
+
+### end install.sh variables
+
+
 GAPPS_PRODUCT_PACKAGES += \
     GoogleBackupTransport \
     GoogleContactsSyncAdapter \
