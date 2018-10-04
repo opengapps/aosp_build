@@ -45,6 +45,11 @@ GAPPS_PRODUCT_PACKAGES += \
     GmsCoreSetupPrebuilt
 endif
 
+ifneq ($(filter 28,$(call get-allowed-api-levels)),)
+GAPPS_PRODUCT_PACKAGES += \
+    MarkupGoogle
+endif
+
 ifneq ($(filter nano,$(TARGET_GAPPS_VARIANT)),) # require at least nano
 GAPPS_PRODUCT_PACKAGES += \
     FaceLock \
