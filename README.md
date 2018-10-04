@@ -7,7 +7,7 @@
 ## Getting started
 **1. Add the build system, and the wanted sources to your manifest.**
 
-Find your manifest file (check inside `${ANDROID_BUILD_TOP}/.repo/manifest/`)
+Find your manifest file (check inside `${ANDROID_BUILD_TOP}/.repo/manifests/`)
 and add the following towards the end:
 ```xml
 <remote name="opengapps" fetch="https://github.com/opengapps/"  />
