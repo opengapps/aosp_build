@@ -196,6 +196,11 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/pixelicons/25
 endif
 
+ifneq ($(filter 28,$(call get-allowed-api-levels)),)
+DEVICE_PACKAGE_OVERLAYS += \
+    $(GAPPS_DEVICE_FILES_PATH)/overlay/pixellauncher/28
+endif
+
 ifneq ($(filter 25,$(call get-allowed-api-levels)),)
 PRODUCT_PACKAGES += \
     PixelLauncherIcons
