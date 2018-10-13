@@ -1,5 +1,6 @@
-# Always needed
-PRODUCT_COPY_FILES += $(call gapps-copy-to-system,all,framework)
+GAPPS_NEXUS2015_CODENAMES += \
+    aosp_angler \
+    aosp_bullhead
 
 GAPPS_NEXUS_CODENAMES += \
     full_maguro \
@@ -14,17 +15,41 @@ GAPPS_NEXUS_CODENAMES += \
     aosp_hammerhead \
     aosp_flounder \
     aosp_shamu \
-    aosp_angler \
-    aosp_bullhead
+    $(GAPPS_NEXUS2015_CODENAMES)
 
-GAPPS_PIXEL_CODENAMES += \
+GAPPS_PIXEL2016_CODENAMES += \
     aosp_marlin \
-    aosp_sailfish \
+    aosp_sailfish
+
+GAPPS_PIXEL2017_CODENAMES += \
     aosp_muskie \
     aosp_taimen \
     aosp_wahoo
 
+GAPPS_PIXEL_CODENAMES += \
+    $(GAPPS_PIXEL2016_CODENAMES) \
+    $(GAPPS_PIXEL2017_CODENAMES)
+
 gapps_etc_files := $(call gapps-copy-to-system,all,etc)
+gapps_framework_files := $(call gapps-copy-to-system,all,framework)
+
+# Remove experimental2015 camera on non-Nexus 2015 devices
+ifeq ($(filter $(GAPPS_NEXUS2015_CODENAMES),$(TARGET_PRODUCT)),)
+  gapps_etc_files := $(filter-out %permissions/com.google.android.camera.experimental2015.xml,$(gapps_etc_files))
+  gapps_framework_files := $(filter-out %com.google.android.camera.experimental2015.jar,$(gapps_framework_files))
+endif
+
+# Remove experimental2016 camera on non-Pixel 2016 devices
+ifeq ($(filter $(GAPPS_PIXEL2016_CODENAMES),$(TARGET_PRODUCT)),)
+  gapps_etc_files := $(filter-out %permissions/com.google.android.camera.experimental2016.xml,$(gapps_etc_files))
+  gapps_framework_files := $(filter-out %com.google.android.camera.experimental2016.jar,$(gapps_framework_files))
+endif
+
+# Remove experimental2017 camera on non-Pixel 2017 devices
+ifeq ($(filter $(GAPPS_PIXEL2017_CODENAMES),$(TARGET_PRODUCT)),)
+  gapps_etc_files := $(filter-out %permissions/com.google.android.camera.experimental2017.xml,$(gapps_etc_files))
+  gapps_framework_files := $(filter-out %com.google.android.camera.experimental2017.jar,$(gapps_framework_files))
+endif
 
 # Remove google_build.xml on non-Pixel devices
 ifeq ($(filter $(GAPPS_PIXEL_CODENAMES),$(TARGET_PRODUCT)),)
@@ -40,7 +65,7 @@ endif
 # GoogleDialer
 gapps_etc_files := $(filter-out %sysconfig/dialer_experience.xml,$(gapps_etc_files))
 
-PRODUCT_COPY_FILES += $(gapps_etc_files)
+PRODUCT_COPY_FILES += $(gapps_etc_files) $(gapps_framework_files)
 
 # check if we are building a vendor image
 ifneq ($(CALLED_FROM_SETUP),true)
