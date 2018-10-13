@@ -1,30 +1,31 @@
 GAPPS_NEXUS2015_CODENAMES += \
-    aosp_angler \
-    aosp_bullhead
+    %angler \
+    %bullhead
 
 GAPPS_NEXUS_CODENAMES += \
-    full_maguro \
-    full_toro \
-    full_toroplus \
-    aosp_grouper \
-    aosp_tilapia \
-    aosp_manta \
-    aosp_mako \
-    aosp_flo \
-    aosp_deb \
-    aosp_hammerhead \
-    aosp_flounder \
-    aosp_shamu \
+    %maguro \
+    %toro \
+    %toroplus \
+    %grouper \
+    %tilapia \
+    %manta \
+    %mako \
+    %flo \
+    %deb \
+    %hammerhead \
+    %flounder \
+    %shamu \
     $(GAPPS_NEXUS2015_CODENAMES)
 
 GAPPS_PIXEL2016_CODENAMES += \
-    aosp_marlin \
-    aosp_sailfish
+    %marlin \
+    %sailfish
 
 GAPPS_PIXEL2017_CODENAMES += \
-    aosp_muskie \
-    aosp_taimen \
-    aosp_wahoo
+    %muskie \
+    %taimen \
+    %wahoo \
+    %walleye
 
 GAPPS_PIXEL_CODENAMES += \
     $(GAPPS_PIXEL2016_CODENAMES) \
