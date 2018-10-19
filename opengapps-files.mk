@@ -27,9 +27,14 @@ GAPPS_PIXEL2017_CODENAMES += \
     %wahoo \
     %walleye
 
+GAPPS_PIXEL2018_CODENAMES += \
+    %blueline \
+    %crosshatch
+
 GAPPS_PIXEL_CODENAMES += \
     $(GAPPS_PIXEL2016_CODENAMES) \
-    $(GAPPS_PIXEL2017_CODENAMES)
+    $(GAPPS_PIXEL2017_CODENAMES) \
+    $(GAPPS_PIXEL2018_CODENAMES)
 
 gapps_etc_files := $(call gapps-copy-to-system,all,etc)
 gapps_framework_files := $(call gapps-copy-to-system,all,framework)
@@ -50,6 +55,12 @@ endif
 ifeq ($(filter $(GAPPS_PIXEL2017_CODENAMES),$(TARGET_PRODUCT)),)
   gapps_etc_files := $(filter-out %permissions/com.google.android.camera.experimental2017.xml,$(gapps_etc_files))
   gapps_framework_files := $(filter-out %com.google.android.camera.experimental2017.jar,$(gapps_framework_files))
+endif
+
+# Remove experimental2018 camera on non-Pixel 2018 devices
+ifeq ($(filter $(GAPPS_PIXEL2018_CODENAMES),$(TARGET_PRODUCT)),)
+  gapps_etc_files := $(filter-out %permissions/com.google.android.camera.experimental2018.xml,$(gapps_etc_files))
+  gapps_framework_files := $(filter-out %com.google.android.camera.experimental2018.jar,$(gapps_framework_files))
 endif
 
 # Remove google_build.xml and nexus.xml on non-Pixel devices
