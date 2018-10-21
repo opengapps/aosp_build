@@ -52,13 +52,9 @@ ifeq ($(filter $(GAPPS_PIXEL2017_CODENAMES),$(TARGET_PRODUCT)),)
   gapps_framework_files := $(filter-out %com.google.android.camera.experimental2017.jar,$(gapps_framework_files))
 endif
 
-# Remove google_build.xml on non-Pixel devices
+# Remove google_build.xml and nexus.xml on non-Pixel devices
 ifeq ($(filter $(GAPPS_PIXEL_CODENAMES),$(TARGET_PRODUCT)),)
   gapps_etc_files := $(filter-out %sysconfig/google_build.xml,$(gapps_etc_files))
-endif
-
-# Remove nexus.xml on non-Nexus devices
-ifeq ($(filter $(GAPPS_NEXUS_CODENAMES),$(TARGET_PRODUCT)),)
   gapps_etc_files := $(filter-out %sysconfig/nexus.xml,$(gapps_etc_files))
 endif
 
