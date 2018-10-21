@@ -86,3 +86,4 @@ endif
 
 # Reset internal variables
 gapps_etc_files :=
+gapps_framework_files :=
