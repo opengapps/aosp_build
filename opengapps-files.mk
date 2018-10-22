@@ -69,6 +69,24 @@ ifeq ($(filter $(GAPPS_PIXEL_CODENAMES),$(TARGET_PRODUCT)),)
   gapps_etc_files := $(filter-out %sysconfig/nexus.xml,$(gapps_etc_files))
 endif
 
+# Copy pixel_experience_2017.xml on 2017 and later Pixels
+ifeq ($(filter $(GAPPS_PIXEL2017_CODENAMES) $(GAPPS_PIXEL2018_CODENAMES),$(TARGET_PRODUCT)),)
+  gapps_etc_files := $(filter-out %sysconfig/pixel_experience_2017.xml,$(gapps_etc_files))
+endif
+
+# Only copy pixel_experience_2018 on 2018 Pixels
+ifeq ($(filter $(GAPPS_PIXEL2018_CODENAMES),$(TARGET_PRODUCT)),)
+  gapps_etc_files := $(filter-out %sysconfig/pixel_experience_2018.xml,$(gapps_etc_files))
+endif
+
+# Copy pixel_YEAR_exclusive on a Pixel's corresponding year
+ifeq ($(filter $(GAPPS_PIXEL2017_CODENAMES),$(TARGET_PRODUCT)),)
+  gapps_etc_files := $(filter-out %sysconfig/pixel_2017_exclusive.xml,$(gapps_etc_files))
+endif
+ifeq ($(filter $(GAPPS_PIXEL2018_CODENAMES),$(TARGET_PRODUCT)),)
+  gapps_etc_files := $(filter-out %sysconfig/pixel_2018_exclusive.xml,$(gapps_etc_files))
+endif
+
 # This is included as part of GoogleDialer build, for devices that have the
 # GoogleDialer
 gapps_etc_files := $(filter-out %sysconfig/dialer_experience.xml,$(gapps_etc_files))
