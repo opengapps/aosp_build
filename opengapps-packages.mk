@@ -116,6 +116,10 @@ GAPPS_PRODUCT_PACKAGES += \
     GoogleExtServices \
     GoogleExtShared
 endif
+ifneq ($(filter 28,$(call get-allowed-api-levels)),)
+GAPPS_PRODUCT_PACKAGES += \
+    DigitalWellbeing
+endif
 
 ifneq ($(filter super,$(TARGET_GAPPS_VARIANT)),)
 
