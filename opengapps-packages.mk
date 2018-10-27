@@ -42,7 +42,8 @@ endif
 ifneq ($(filter 26,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     AndroidPlatformServices \
-    GmsCoreSetupPrebuilt
+    GmsCoreSetupPrebuilt \
+    AndroidMigratePrebuilt
 endif
 
 ifneq ($(filter 28,$(call get-allowed-api-levels)),)
