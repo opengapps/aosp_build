@@ -138,6 +138,11 @@ GAPPS_PRODUCT_PACKAGES += \
     TranslatePrebuilt \
     GoogleZhuyinIME
 
+ifneq ($(filter 28,$(call get-allowed-api-levels)),)
+GAPPS_PRODUCT_PACKAGES += \
+    ActionsServices
+endif
+
 endif # end super
 endif # end stock
 endif # end full
