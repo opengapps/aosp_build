@@ -91,7 +91,6 @@ GAPPS_PRODUCT_PACKAGES += \
     Videos \
     Music2 \
     Newsstand \
-    PrebuiltNewsWeather \
     PlayGames \
     EditorsSheets \
     EditorsSlides \
