@@ -60,8 +60,14 @@ ifneq ($(filter micro,$(TARGET_GAPPS_VARIANT)),) # require at least micro
 GAPPS_PRODUCT_PACKAGES += \
     CalendarGooglePrebuilt \
     PrebuiltExchange3Google \
-    PrebuiltGmail \
+    PrebuiltGmail
+
+ifneq ($(filter 26,$(call get-allowed-api-levels)),)
+GAPPS_FORCE_PIXEL_LAUNCHER := true
+else
+GAPPS_PRODUCT_PACKAGES += \
     GoogleHome
+endif
 
 ifeq ($(filter 23,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
