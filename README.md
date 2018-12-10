@@ -101,7 +101,10 @@ If you want to include Chrome on a non-full build you need:
 GAPPS_FORCE_BROWSER_OVERRIDES := true
 ```
 
-If you want use PixelLauncher (Default from Oreo) overriding GoogleHome you need:
+PixelLauncher is the default launcher in Oreo builds (and newer); in
+builds older than Oreo, the default launcher is GoogleNow.  If
+desired, then you can force PixelLauncher to be used by setting the
+following variable:
 
 ```makefile
 GAPPS_FORCE_PIXEL_LAUNCHER := true

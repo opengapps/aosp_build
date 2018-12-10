@@ -1,7 +1,7 @@
 LOCAL_PATH := .
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
-LOCAL_MODULE := GoogleHome
+LOCAL_MODULE := GoogleNow
 LOCAL_PACKAGE_NAME := com.google.android.launcher
 
 GAPPS_LOCAL_OVERRIDES_MIN_VARIANT := stock

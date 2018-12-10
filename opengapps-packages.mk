@@ -66,7 +66,7 @@ ifneq ($(filter 26,$(call get-allowed-api-levels)),)
 GAPPS_FORCE_PIXEL_LAUNCHER := true
 else
 GAPPS_PRODUCT_PACKAGES += \
-    GoogleHome
+    GoogleNow
 endif
 
 ifeq ($(filter 23,$(call get-allowed-api-levels)),)
