@@ -5,6 +5,11 @@ include vendor/opengapps/build/opengapps-files.mk
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
 
+ifneq ($(filter 28,$(call get-allowed-api-levels)),)
+DEVICE_PACKAGE_OVERLAYS += \
+    $(GAPPS_DEVICE_FILES_PATH)/overlay/assistant/28
+endif
+
 GAPPS_PRODUCT_PACKAGES += \
     GoogleBackupTransport \
     GoogleContactsSyncAdapter \
