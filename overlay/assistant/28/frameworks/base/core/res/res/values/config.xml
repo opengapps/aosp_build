@@ -20,17 +20,6 @@
 <!-- These resources are around just to allow their values to be customized
      for different hardware and product builds. -->
 <resources>
-    <!-- Enable overlay for all location components. -->
-    <bool name="config_enableNetworkLocationOverlay" translatable="false">true</bool>
-    <bool name="config_enableFusedLocationOverlay" translatable="false">true</bool>
-    <bool name="config_enableGeocoderOverlay" translatable="false">true</bool>
-    <bool name="config_enableGeofenceOverlay" translatable="false">true</bool>
-    <!--
-       Sets the package names whose certificates should be used to
-       verify location providers are allowed to be loaded.
-    -->
-    <string-array name="config_locationProviderPackageNames" translatable="false">
-        <item>com.google.android.gms</item>
-        <item>com.android.location.fused</item>
-    </string-array>
+    <!-- Component name for default assistant on this device -->
+    <string name="config_defaultAssistantComponentName">com.google.android.googlequicksearchbox/com.google.android.voiceinteraction.GsaVoiceInteractionService</string>
 </resources>
