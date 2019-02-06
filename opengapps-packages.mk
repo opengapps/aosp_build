@@ -116,6 +116,7 @@ GAPPS_PRODUCT_PACKAGES += \
     GoogleCamera \
     GoogleContacts \
     LatinImeGoogle \
+    StorageManagerGoogle \
     TagGoogle \
     GoogleVrCore
 
