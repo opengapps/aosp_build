@@ -29,7 +29,7 @@ Find your manifest file (check inside `${ANDROID_BUILD_TOP}/.repo/manifests/`)
 and add the following towards the end:
 ```xml
 <remote name="opengapps" fetch="https://github.com/opengapps/"  />
-<remote name="nezor" fetch="https://github.com/opengapps/"  />
+<remote name="nezor" fetch="https://gitlab.nezorfla.me/opengapps/"  />
 
 <project path="vendor/opengapps/build" name="aosp_build" revision="master" remote="opengapps" />
 
