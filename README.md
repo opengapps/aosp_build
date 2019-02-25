@@ -1,6 +1,24 @@
 # OpenGApps AOSP based build system
 
-### Disclaimer
+## ++Infrastructure Issues++
+
+**25-Feb-2019**  Please see [Ilya Danilkin's blog
+post](https://opengapps.org/blog/post/2019/02/17/github-situation/) on
+the main OpenGapps project page that explains GitHub infrastructure
+issues that effected certain opengapps projects:
+
+https://opengapps.org/blog/post/2019/02/17/github-situation/
+
+In short, the git-remote has changed for the projects `all, arm,
+arm64, x86, x86_64`.  You should update your manifest entries for
+those projects (see the updated example below that uses the remote
+"nezor").
+
+More discussion on this issue can be found here:
+
+https://github.com/opengapps/opengapps/issues/719
+
+## Disclaimer
 1. **Use this at your own risk.** Cyanogenmod received a cease and desist letter from Google when they included Google Apps in their ROM. See: [A Note on Google Apps for Android](http://android-developers.blogspot.com/2009/09/note-on-google-apps-for-android.html)
 2. **This project is in no way affiliated with, sponsored by, or related to Google.**
 
@@ -11,16 +29,18 @@ Find your manifest file (check inside `${ANDROID_BUILD_TOP}/.repo/manifests/`)
 and add the following towards the end:
 ```xml
 <remote name="opengapps" fetch="https://github.com/opengapps/"  />
+<remote name="nezor" fetch="https://github.com/opengapps/"  />
 
 <project path="vendor/opengapps/build" name="aosp_build" revision="master" remote="opengapps" />
-<project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="opengapps" />
+
+<project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="nezor" />
 
 <!-- arm64 depends on arm -->
-<project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="opengapps" />
-<project path="vendor/opengapps/sources/arm64" name="arm64" clone-depth="1" revision="master" remote="opengapps" />
+<project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="nezor" />
+<project path="vendor/opengapps/sources/arm64" name="arm64" clone-depth="1" revision="master" remote="nezor" />
 
-<project path="vendor/opengapps/sources/x86" name="x86" clone-depth="1" revision="master" remote="opengapps" />
-<project path="vendor/opengapps/sources/x86_64" name="x86_64" clone-depth="1" revision="master" remote="opengapps" />
+<project path="vendor/opengapps/sources/x86" name="x86" clone-depth="1" revision="master" remote="nezor" />
+<project path="vendor/opengapps/sources/x86_64" name="x86_64" clone-depth="1" revision="master" remote="nezor" />
 ```
 
 **2. Set the desired OpenGapps variant**
