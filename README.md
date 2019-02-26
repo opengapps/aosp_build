@@ -5,7 +5,7 @@
 **25-Feb-2019**  Please see [Ilya Danilkin's blog
 post](https://opengapps.org/blog/post/2019/02/17/github-situation/) on
 the main OpenGapps project page that explains GitHub infrastructure
-issues that effected certain opengapps projects:
+issues that affected certain opengapps projects:
 
 https://opengapps.org/blog/post/2019/02/17/github-situation/
 
