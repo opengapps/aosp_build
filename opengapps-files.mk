@@ -95,8 +95,12 @@ PRODUCT_COPY_FILES += $(gapps_etc_files) $(gapps_framework_files)
 
 # check if we are building a vendor image
 ifneq ($(CALLED_FROM_SETUP),true)
+ifneq ($(filter 28, $(call get-allowed-api-levels)),)
+BUILD_VENDORIMAGE := $(shell CALLED_FROM_SETUP=true build/soong/soong_ui.bash --dumpvar-mode BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE)
+else
 BUILD_VENDORIMAGE := $(shell CALLED_FROM_SETUP=true BUILD_SYSTEM=build/core \
       command make --no-print-directory -f build/core/config.mk dumpvar-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE)
+endif
 endif
 
 # Pico and higher
