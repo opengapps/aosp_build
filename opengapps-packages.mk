@@ -84,7 +84,6 @@ ifneq ($(filter mini,$(TARGET_GAPPS_VARIANT)),) # require at least mini
 GAPPS_PRODUCT_PACKAGES += \
     CalculatorGoogle \
     PrebuiltDeskClockGoogle \
-    PlusOne \
     Hangouts \
     Maps \
     Photos \
