@@ -12,7 +12,7 @@ https://opengapps.org/blog/post/2019/02/17/github-situation/
 In short, the git-remote has changed for the projects `all, arm,
 arm64, x86, x86_64`.  You should update your manifest entries for
 those projects (see the updated example below that uses the remote
-"nezor").
+"gitlab").
 
 More discussion on this issue can be found here:
 
@@ -29,18 +29,18 @@ Find your manifest file (check inside `${ANDROID_BUILD_TOP}/.repo/manifests/`)
 and add the following towards the end:
 ```xml
 <remote name="opengapps" fetch="https://github.com/opengapps/"  />
-<remote name="nezor" fetch="https://gitlab.nezorfla.me/opengapps/"  />
+<remote name="gitlab" fetch="https://gitlab.opengapps.org/opengapps/"  />
 
 <project path="vendor/opengapps/build" name="aosp_build" revision="master" remote="opengapps" />
 
-<project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="nezor" />
+<project path="vendor/opengapps/sources/all" name="all" clone-depth="1" revision="master" remote="gitlab" />
 
 <!-- arm64 depends on arm -->
-<project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="nezor" />
-<project path="vendor/opengapps/sources/arm64" name="arm64" clone-depth="1" revision="master" remote="nezor" />
+<project path="vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="gitlab" />
+<project path="vendor/opengapps/sources/arm64" name="arm64" clone-depth="1" revision="master" remote="gitlab" />
 
-<project path="vendor/opengapps/sources/x86" name="x86" clone-depth="1" revision="master" remote="nezor" />
-<project path="vendor/opengapps/sources/x86_64" name="x86_64" clone-depth="1" revision="master" remote="nezor" />
+<project path="vendor/opengapps/sources/x86" name="x86" clone-depth="1" revision="master" remote="gitlab" />
+<project path="vendor/opengapps/sources/x86_64" name="x86_64" clone-depth="1" revision="master" remote="gitlab" />
 ```
 
 **2. Set the desired OpenGapps variant**
