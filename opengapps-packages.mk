@@ -51,16 +51,18 @@ GAPPS_PRODUCT_PACKAGES += \
     AndroidMigratePrebuilt
 endif
 
-ifneq ($(filter 28,$(call get-allowed-api-levels)),)
-GAPPS_PRODUCT_PACKAGES += \
-    MarkupGoogle
-endif
-
 ifneq ($(filter nano,$(TARGET_GAPPS_VARIANT)),) # require at least nano
 GAPPS_PRODUCT_PACKAGES += \
     libjni_latinimegoogle \
     FaceLock \
     Velvet
+
+ifneq ($(filter 28,$(call get-allowed-api-levels)),)
+GAPPS_PRODUCT_PACKAGES += \
+    DigitalWellbeing \
+    MarkupGoogle \
+    SoundPicker
+endif
 
 ifneq ($(filter micro,$(TARGET_GAPPS_VARIANT)),) # require at least micro
 GAPPS_PRODUCT_PACKAGES += \
@@ -127,10 +129,6 @@ GAPPS_PRODUCT_PACKAGES += \
     GooglePrintRecommendationService \
     GoogleExtServices \
     GoogleExtShared
-endif
-ifneq ($(filter 28,$(call get-allowed-api-levels)),)
-GAPPS_PRODUCT_PACKAGES += \
-    DigitalWellbeing
 endif
 
 ifneq ($(filter super,$(TARGET_GAPPS_VARIANT)),)
