@@ -184,6 +184,11 @@ ifneq ($(filter 23,$(call get-allowed-api-levels)),)
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/browser
 endif
+# Chrome supplies a webview, include the overlay:
+ifneq ($(filter 24,$(call get-allowed-api-levels)),)
+DEVICE_PACKAGE_OVERLAYS += \
+     $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/24
+endif
 PRODUCT_PACKAGES += \
     Chrome
 endif
