@@ -2,6 +2,11 @@
 
 ## ++Infrastructure Issues++
 
+**05-Nov-2019**  Gitlab maintenance: we've recreated all of our package repos
+(`all, arm, arm64, x86, x86_64`) from scratch. Please make sure to:
+- install `git-lfs` (more info [here](https://git-lfs.github.com/)) since we're now using it
+- clean and do a fresh pull before building
+
 **25-Feb-2019**  Please see [Ilya Danilkin's blog
 post](https://opengapps.org/blog/post/2019/02/17/github-situation/) on
 the main OpenGapps project page that explains GitHub infrastructure
