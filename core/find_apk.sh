@@ -170,14 +170,23 @@ getappapidir() {
   if [ ! -d "$1/$2/"*"app/$3" ]; then
     return 1 # Package does not exist for this arch.
   fi
-  
-  for apidir in $(ls -vr "$1/$2/"*"app/$3"); do
-    if [ "$apidir" -le "$4" ]; then
-      appapidir=$(echo "$1/$2/"*"app/$3/$apidir")
-      return 0
+
+  # Try to find the largest API which is greater or
+  # equal to what is needed.
+  api=0
+  for apidir in "$1/$2/"*"app/$3/"*; do
+    currentApi="$(basename "$apidir")"
+    if [ "$currentApi" -le "$4" ] && [ "$currentApi" -ge "$api" ]; then
+      api="$currentApi"
     fi
   done
-  
+
+  # Have we found anything?
+  if [ "$api" -gt 0 ]; then
+    appapidir="$(echo "$1/$2/"*"app/$3/$api")"
+    return 0
+  fi
+
   echo "WARNING: No APK found compatible with API level $4 for package $3 on $2" >&2
   return 1
 }
