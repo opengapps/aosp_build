@@ -9,4 +9,9 @@ LOCAL_OVERRIDES_PACKAGES := webview
 LOCAL_REQUIRED_MODULES := libwebviewchromium_loader \
                           libwebviewchromium_plat_support
 
+ifneq ($(filter 29,$(call get-allowed-api-levels)),)
+LOCAL_REQUIRED_MODULES += \
+    TrichromeLibrary
+endif
+
 include $(BUILD_GAPPS_PREBUILT_APK)
