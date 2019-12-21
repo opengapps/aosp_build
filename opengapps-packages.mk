@@ -54,8 +54,13 @@ endif
 ifneq ($(filter nano,$(TARGET_GAPPS_VARIANT)),) # require at least nano
 GAPPS_PRODUCT_PACKAGES += \
     libjni_latinimegoogle \
-    FaceLock \
     Velvet
+
+# FaceLock is only available on API < 29
+ifeq ($(filter 29,$(call get-allowed-api-levels)),)
+GAPPS_PRODUCT_PACKAGES += \
+    FaceLock
+endif
 
 ifneq ($(filter 28,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
