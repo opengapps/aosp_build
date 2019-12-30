@@ -74,8 +74,9 @@ getlatestapk() {
       
       if [ "$2" != "nodpi" ]; then
         # Check if the package dpi is a range and if the device falls between that range
-        lodpi=$(echo "$dpi" | cut -d '-' -f 1)
-        if [[ "$lodpi" != "$dpi" && "$lodpi" -le "$2" && $(echo "$dpi" | rev | cut -d '-' -f 1 | rev) -ge "$2" ]]; then
+        lodpi=${dpi%%-*}
+        hidpi=${dpi##*-}
+        if [[ "$lodpi" != "$dpi" && "$lodpi" -le "$2" && "$hidpi" -ge "$2" ]]; then
           sourceapk="$foundapk"
           break;
         fi
@@ -94,7 +95,7 @@ getlatestapk() {
         dpi="$(basename "$dpipath")"
         # If this is a range, we already know the device is either over or under that range.
         # Therefore, we can safely take any value.
-        dpi=$(echo "$dpi" | cut -d '-' -f 1)
+        dpi=${dpi%%-*}
         if [ "$dpi" -ge "$2" ]; then
           sourceapk="$foundapk"
         else
@@ -131,9 +132,10 @@ getconformapk() {
   for foundapk in $(find "$1" -iname '*.apk' | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 -n | cut -d/ -f2-); do
     founddpipath="$(dirname "$foundapk")"
     dpi="$(basename "$founddpipath")"
-    lodpi=$(echo "$dpi" | cut -d '-' -f 1)
+    lodpi=${dpi%%-*}
+    hidpi=${dpi##*-}
     if [[ "$dpi" = "nodpi" || "$dpi" = "$2"
-       || ( "$2" != "nodpi" && "$lodpi" != "$dpi" && "$lodpi" -le "$2" && $(echo "$dpi" | rev | cut -d '-' -f 1 | rev) -ge "$2" ) ]]; then
+       || ( "$2" != "nodpi" && "$lodpi" != "$dpi" && "$lodpi" -le "$2" && "$hidpi" -ge "$2" ) ]]; then
         sourceapk="$foundapk"
         break;
     fi
