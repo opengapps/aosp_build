@@ -171,7 +171,7 @@ ifneq ($(filter 26,$(call get-allowed-api-levels)),)
 PRODUCT_PACKAGES += GoogleWebViewOverlay
 else ifneq ($(filter 24,$(call get-allowed-api-levels)),)
 DEVICE_PACKAGE_OVERLAYS += \
-    $(GAPPS_DEVICE_FILES_PATH)/modules/GoogleWebViewOverlay/res/xml/config_webview_packages.xml
+    $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/24
 else
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/21
