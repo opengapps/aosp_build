@@ -172,10 +172,11 @@ endif # end nano
 PRODUCT_PACKAGES += $(filter-out $(GAPPS_EXCLUDED_PACKAGES),$(GAPPS_PRODUCT_PACKAGES))
 
 ifeq ($(GAPPS_FORCE_WEBVIEW_OVERRIDES),true)
-# starting with nougat, use a different overlay
-ifneq ($(filter 26,$(call get-allowed-api-levels)),)
+ifneq ($(filter 29,$(call get-allowed-api-levels)),)
+# starting with Q, put the overlay in a product APK
 PRODUCT_PACKAGES += GoogleWebViewOverlay
 else ifneq ($(filter 24,$(call get-allowed-api-levels)),)
+# starting with nougat, use a different overlay
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/webview/24
 else
