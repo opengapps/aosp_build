@@ -21,30 +21,29 @@ ifneq ($(GAPPS_LOCAL_OVERRIDES_PACKAGES),)
   endif
 endif
 
-LOCAL_SRC_FILES := $(call find-apk-for-pkg,all,$(LOCAL_PACKAGE_NAME))
-
+LOCAL_SRC_FILES := $(call find-apk-for-pkg,$(TARGET_ARCH),$(LOCAL_PACKAGE_NAME))
 ifdef LOCAL_SRC_FILES
-  LOCAL_PREBUILT_JNI_LIBS := $(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES))
-else
-  LOCAL_SRC_FILES := $(call find-apk-for-pkg,$(TARGET_ARCH),$(LOCAL_PACKAGE_NAME))
-  ifdef LOCAL_SRC_FILES
-    ifeq ($(filter 21,$(call get-allowed-api-levels)),)
-      # only kitkat
-      ifneq ($(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES)),)
-        LOCAL_SHARED_LIBRARIES := $(notdir $(basename $(shell zipinfo -1 "$(LOCAL_SRC_FILES)" "$(call get-lib-search-path, $(TARGET_ARCH))" -x lib/*/crazy/* 2>/dev/null)))
-      endif
-    else
-      LOCAL_PREBUILT_JNI_LIBS_$(TARGET_ARCH) := $(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES))
+  ifeq ($(filter 21,$(call get-allowed-api-levels)),)
+    # only kitkat
+    ifneq ($(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES)),)
+      LOCAL_SHARED_LIBRARIES := $(notdir $(basename $(shell zipinfo -1 "$(LOCAL_SRC_FILES)" "$(call get-lib-search-path, $(TARGET_ARCH))" -x lib/*/crazy/* 2>/dev/null)))
     endif
   else
-    ifdef TARGET_2ND_ARCH
-      LOCAL_SRC_FILES := $(call find-apk-for-pkg,$(TARGET_2ND_ARCH),$(LOCAL_PACKAGE_NAME))
-      ifdef LOCAL_SRC_FILES
-        LOCAL_MODULE_TARGET_ARCH := $(TARGET_2ND_ARCH)
-        LOCAL_PREBUILT_JNI_LIBS_$(TARGET_2ND_ARCH) := $(call find-libs-in-apk,$(TARGET_2ND_ARCH),$(LOCAL_SRC_FILES))
-      endif
+    LOCAL_PREBUILT_JNI_LIBS_$(TARGET_ARCH) := $(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES))
+  endif
+else
+  ifdef TARGET_2ND_ARCH
+    LOCAL_SRC_FILES := $(call find-apk-for-pkg,$(TARGET_2ND_ARCH),$(LOCAL_PACKAGE_NAME))
+    ifdef LOCAL_SRC_FILES
+      LOCAL_MODULE_TARGET_ARCH := $(TARGET_2ND_ARCH)
+      LOCAL_PREBUILT_JNI_LIBS_$(TARGET_2ND_ARCH) := $(call find-libs-in-apk,$(TARGET_2ND_ARCH),$(LOCAL_SRC_FILES))
     endif
   endif
+endif
+
+ifndef LOCAL_SRC_FILES
+  LOCAL_SRC_FILES := $(call find-apk-for-pkg,all,$(LOCAL_PACKAGE_NAME))
+  LOCAL_PREBUILT_JNI_LIBS := $(call find-libs-in-apk,$(TARGET_ARCH),$(LOCAL_SRC_FILES))
 endif
 
 ifndef LOCAL_SRC_FILES
