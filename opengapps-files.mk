@@ -91,6 +91,13 @@ endif
 # GoogleDialer
 gapps_etc_files := $(filter-out %sysconfig/dialer_experience.xml,$(gapps_etc_files))
 
+# Use separate opengapps-permissions for Q+
+ifneq ($(filter 29,$(call get-allowed-api-levels)),)
+  gapps_etc_files := $(filter-out %default-permissions/opengapps-permissions.xml,$(gapps_etc_files))
+else
+  gapps_etc_files := $(filter-out %default-permissions/opengapps-permissions-q.xml,$(gapps_etc_files))
+endif
+
 PRODUCT_COPY_FILES += $(gapps_etc_files) $(gapps_framework_files)
 
 # check if we are building a vendor image
