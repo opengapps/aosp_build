@@ -11,7 +11,7 @@ LOCAL_REQUIRED_MODULES := libwebviewchromium_loader \
 
 ifneq ($(filter 29,$(call get-allowed-api-levels)),)
 LOCAL_REQUIRED_MODULES += \
-    TrichromeLibrary
+    TrichromeLibraryGoogle
 endif
 
 include $(BUILD_GAPPS_PREBUILT_APK)

@@ -9,7 +9,7 @@ GAPPS_LOCAL_OVERRIDES_PACKAGES := Browser Browser2 BrowserProviderProxy Chromium
 
 ifneq ($(filter 29,$(call get-allowed-api-levels)),)
 LOCAL_REQUIRED_MODULES += \
-    TrichromeLibrary
+    TrichromeLibraryGoogle
 endif
 
 include $(BUILD_GAPPS_PREBUILT_APK)
