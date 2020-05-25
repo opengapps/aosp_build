@@ -2,12 +2,17 @@ include vendor/opengapps/build/core/definitions.mk
 include vendor/opengapps/build/config.mk
 include vendor/opengapps/build/opengapps-files.mk
 
+ifneq ($(filter tvmini,$(TARGET_GAPPS_VARIANT)),)
+DEVICE_PACKAGE_OVERLAYS += \
+    $(GAPPS_DEVICE_FILES_PATH)/overlay/tvmini
+else
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/pico
 
 ifneq ($(filter 28,$(call get-allowed-api-levels)),)
 DEVICE_PACKAGE_OVERLAYS += \
     $(GAPPS_DEVICE_FILES_PATH)/overlay/assistant/28
+endif
 endif
 
 GAPPS_PRODUCT_PACKAGES += \
