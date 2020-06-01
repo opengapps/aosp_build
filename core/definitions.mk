@@ -35,6 +35,8 @@ $(if $(filter mini, $(1)),pico nano micro mini) \
 $(if $(filter full, $(1)),pico nano micro mini full) \
 $(if $(filter stock,$(1)),pico nano micro mini full stock) \
 $(if $(filter super,$(1)),pico nano micro mini full stock super) \
+$(if $(filter tvmini,$(1)),tvmini) \
+$(if $(filter tvstock,$(1)),tvmini tvstock) \
 )
 endef
 
