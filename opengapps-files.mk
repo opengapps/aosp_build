@@ -98,6 +98,34 @@ else
   gapps_etc_files := $(filter-out %default-permissions/opengapps-permissions-q.xml,$(gapps_etc_files))
 endif
 
+# For ATV, only install a limited set of etc and framework files
+ifneq ($(filter tvmini,$(TARGET_GAPPS_VARIANT)),)
+  gapps_etc_files := \
+    vendor/opengapps/sources/all/etc/permissions/privapp-permissions-atv.xml:$(TARGET_COPY_OUT_SYSTEM)/etc//permissions/privapp-permissions-atv.xml \
+    vendor/opengapps/sources/all/etc/sysconfig/google.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/google.xml \
+    vendor/opengapps/sources/all/etc/sysconfig/google_atv.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/google_atv.xml \
+    vendor/opengapps/sources/all/etc/sysconfig/google_build.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/google_build.xml \
+    vendor/opengapps/sources/all/etc/permissions/privapp-permissions-google.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-google.xml \
+    vendor/opengapps/sources/all/etc/sysconfig/google-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/google-hiddenapi-package-whitelist.xml
+
+  ifneq ($(filter 28, $(call get-allowed-api-levels)),)
+    gapps_framework_files :=
+  else
+    gapps_framework_files := \
+      vendor/opengapps/sources/all/etc/permissions/com.google.android.pano.v1.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/com.google.android.pano.v1.xml \
+      vendor/opengapps/sources/all/etc/permissions/com.google.widevine.software.drm.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/com.google.widevine.software.drm.xml \
+      vendor/opengapps/sources/all/framework/24/com.google.android.pano.v1.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/com.google.android.pano.v1.jar
+
+    ifneq ($(filter 25, $(call get-allowed-api-levels)),)
+      gapps_framework_files += \
+        vendor/opengapps/sources/all/framework/25/com.google.widevine.software.drm.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/com.google.widevine.software.drm.jar
+    else
+      gapps_framework_files += \
+        vendor/opengapps/sources/all/framework/24/com.google.widevine.software.drm.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/com.google.widevine.software.drm.jar
+    endif
+  endif
+endif
+
 PRODUCT_COPY_FILES += $(gapps_etc_files) $(gapps_framework_files)
 
 # check if we are building a vendor image
