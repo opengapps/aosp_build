@@ -21,10 +21,16 @@ endif
 GAPPS_VARIANT_EVAL := $(call get-gapps-variant,$(GAPPS_VARIANT))
 
 ifeq ($(GAPPS_VARIANT_EVAL),)
-  $(error GAPPS_VARIANT $(GAPPS_VARIANT) was not found. Use of one of pico,nano,micro,mini,full,stock,super)
+  $(error GAPPS_VARIANT $(GAPPS_VARIANT) was not found. Use of one of pico,nano,micro,mini,full,stock,super,tvmini,tvstock)
 endif
 
 TARGET_GAPPS_VARIANT := $(GAPPS_VARIANT_EVAL)
+
+ifneq ($(filter tvmini,$(TARGET_GAPPS_VARIANT)),)
+ifeq ($(filter 24,$(call get-allowed-api-levels)),)
+  $(error GAPPS_VARIANT $(GAPPS_VARIANT) is not supported on API $(PLATFORM_SDK_VERSION).)
+endif
+endif
 
 ifeq ($(GAPPS_FORCE_MATCHING_DPI),)
   GAPPS_FORCE_MATCHING_DPI := false
