@@ -124,6 +124,13 @@ ifneq ($(filter tvmini,$(TARGET_GAPPS_VARIANT)),)
         vendor/opengapps/sources/all/framework/24/com.google.widevine.software.drm.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/com.google.widevine.software.drm.jar
     endif
   endif
+else
+  # Filter out tv related files
+  gapps_etc_files := $(filter-out %sysconfig/google_atv.xml,$(gapps_etc_files))
+  gapps_etc_files := $(filter-out %permissions/privapp-permissions-atv.xml,$(gapps_etc_files))
+  gapps_etc_files := $(filter-out %permissions/com.google.android.pano.v1.xml,$(gapps_etc_files))
+  gapps_etc_files := $(filter-out %permissions/com.google.android.tv.installed.xml,$(gapps_etc_files))
+  gapps_framework_files := $(filter-out %com.google.android.pano.v1.jar,$(gapps_framework_files))
 endif
 
 PRODUCT_COPY_FILES += $(gapps_etc_files) $(gapps_framework_files)
