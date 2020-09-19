@@ -48,15 +48,3 @@ ifeq ($(GAPPS_FORCE_MATCHING_DPI),false)
     endif
   endif
 endif
-
-GAPPS_LUNZIP_REQUIRED := $(shell find $(GAPPS_SOURCES_PATH) -name '*.apk.lz' -print -quit)
-ifneq ($(GAPPS_LUNZIP_REQUIRED),)
-  GAPPS_TEST_LUNZIP := $(shell command -v lunzip)$(shell command -v lzip)
-  ifeq ($(GAPPS_TEST_LUNZIP),)
-    $(error lzip decompressor not available. Please install one first ("sudo apt-get install lunzip" or "sudo apt-get install lzip"))
-  endif
-
-  ifneq ($(filter clean installclean, $(MAKECMDGOALS)),)
-    $(shell find $(GAPPS_SOURCES_PATH) -name "*apk.lz" | sed 's/\.apk\.lz$$/\.apk/' | xargs rm -f)
-  endif
-endif
