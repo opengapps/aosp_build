@@ -111,7 +111,7 @@ ifneq ($(filter 28,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     DigitalWellbeing \
     MarkupGoogle \
-    SoundPicker
+    GoogleSoundPicker
 endif
 
 ifneq ($(filter micro,$(TARGET_GAPPS_VARIANT)),) # require at least micro
