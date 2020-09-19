@@ -23,7 +23,7 @@ $(if $(filter arm,$(1)),lib/armeabi*/*,lib/$(1)*/*)
 endef
 
 define find-libs-in-apk
-$(addprefix @,$(shell zipinfo -1 "$(2)" | grep "$(call get-lib-search-path, $(1))" | grep -v -E "*/crazy.*"))
+$(addprefix @,$(shell zipinfo -1 "$(2)" | grep "$(call get-lib-search-path, $(1))" | grep -v "*/crazy.*"))
 endef
 
 define get-gapps-variant
