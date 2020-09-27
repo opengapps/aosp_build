@@ -211,7 +211,6 @@ endif # end micro
 endif # end nano
 
 ifneq ($(filter tvstock,$(TARGET_GAPPS_VARIANT)),)
-GAPPS_FORCE_WEBVIEW_OVERRIDES := true
 TVGAPPS_PRODUCT_PACKAGES += \
     talkback \
     VideosPano \
