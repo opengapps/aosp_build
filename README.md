@@ -70,7 +70,14 @@ In `device/manufacturer/product/device.mk` file, towards the end, add:
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
 ```
 
-**4. Build Android**
+**4. Install git LFS and pull in all dependencies
+
+```bash
+git lfs install
+repo forall -c git lfs pull
+```
+
+**5. Build Android**
 
 ## Customizations
 ### Adding extra packages
