@@ -70,9 +70,17 @@ In `device/manufacturer/product/device.mk` file, towards the end, add:
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
 ```
 
-**4. Install git LFS and pull in all dependencies
+**4. Install git LFS and pull in all dependencies**
 
 ```bash
+# More info: https://github.com/git-lfs/git-lfs/blob/master/INSTALLING.md
+# Apt/deb
+sudo apt install git-lfs
+# Yum/rpm
+sudo yum install git-lfs
+# on macOS
+brew install git-lfs
+
 git lfs install
 repo forall -c git lfs pull
 ```
