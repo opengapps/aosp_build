@@ -37,7 +37,7 @@ ifeq ($(GAPPS_FORCE_MATCHING_DPI),)
 endif
 
 ifeq ($(GAPPS_FORCE_MATCHING_DPI),false)
-  GAPPS_AAPT_PATH := $(shell find prebuilts/sdk/tools/$(HOST_OS) -executable -name aapt | head -n 1)
+  GAPPS_AAPT_PATH := $(shell find prebuilts/sdk/tools/$(HOST_OS) -perm /111 -name aapt | head -n 1)
   # Check if aapt is present in prebuilts or if it is installed.
   ifeq ($(wildcard $(GAPPS_AAPT_PATH)),)
     GAPPS_TEST_AAPT := $(shell command -v aapt)
@@ -46,17 +46,5 @@ ifeq ($(GAPPS_FORCE_MATCHING_DPI),false)
     else
       GAPPS_AAPT_PATH := aapt
     endif
-  endif
-endif
-
-GAPPS_LUNZIP_REQUIRED := $(shell find $(GAPPS_SOURCES_PATH) -name '*.apk.lz' -print -quit)
-ifneq ($(GAPPS_LUNZIP_REQUIRED),)
-  GAPPS_TEST_LUNZIP := $(shell command -v lunzip)$(shell command -v lzip)
-  ifeq ($(GAPPS_TEST_LUNZIP),)
-    $(error lzip decompressor not available. Please install one first ("sudo apt-get install lunzip" or "sudo apt-get install lzip"))
-  endif
-
-  ifneq ($(filter clean installclean, $(MAKECMDGOALS)),)
-    $(shell find $(GAPPS_SOURCES_PATH) -name "*apk.lz" | sed 's/\.apk\.lz$$/\.apk/' | xargs rm -f)
   endif
 endif
