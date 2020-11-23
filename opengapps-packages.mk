@@ -214,7 +214,6 @@ ifneq ($(filter tvstock,$(TARGET_GAPPS_VARIANT)),)
 TVGAPPS_PRODUCT_PACKAGES += \
     talkback \
     VideosPano \
-    Music2Pano \
     PlayGamesPano \
     YouTubeLeanback
 endif # end tvstock
