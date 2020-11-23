@@ -38,7 +38,6 @@ TVGAPPS_PRODUCT_PACKAGES += \
 
 # TvMini
 TVGAPPS_PRODUCT_PACKAGES += \
-    AndroidMediaShell \
     AtvRemoteService \
     AtvWidget \
     Backdrop \
@@ -212,6 +211,7 @@ endif # end nano
 
 ifneq ($(filter tvstock,$(TARGET_GAPPS_VARIANT)),)
 TVGAPPS_PRODUCT_PACKAGES += \
+    AndroidMediaShell \
     talkback \
     VideosPano \
     PlayGamesPano \
