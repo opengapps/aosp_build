@@ -163,6 +163,7 @@ ifneq ($(filter stock,$(TARGET_GAPPS_VARIANT)),) # require at least stock
 GAPPS_FORCE_MMS_OVERRIDES := true
 GAPPS_FORCE_WEBVIEW_OVERRIDES := true
 GAPPS_PRODUCT_PACKAGES += \
+    AndroidAuto \
     GoogleCamera \
     GoogleContacts \
     LatinImeGoogle \
