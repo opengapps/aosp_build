@@ -2,12 +2,8 @@ LOCAL_PATH := .
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := GooglePackageInstaller
-ifneq ($(filter tv,$(PRODUCT_CHARACTERISTICS)),)
-        LOCAL_PACKAGE_NAME := com.google.android.pano.packageinstaller
-else
-        LOCAL_PACKAGE_NAME := com.google.android.packageinstaller
-        LOCAL_PRIVILEGED_MODULE := true
-endif
+LOCAL_PACKAGE_NAME := com.google.android.packageinstaller
+LOCAL_PRIVILEGED_MODULE := true
 
 GAPPS_LOCAL_OVERRIDES_PACKAGES := PackageInstaller
 

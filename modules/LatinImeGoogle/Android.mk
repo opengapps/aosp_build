@@ -14,4 +14,5 @@ include $(BUILD_GAPPS_PREBUILT_APK)
 include $(CLEAR_VARS)
 include $(GAPPS_CLEAR_VARS)
 LOCAL_MODULE := libjni_latinimegoogle
+LOCAL_SHARED_LIBRARIES := libstdc++
 include $(BUILD_GAPPS_PREBUILT_SHARED_LIBRARY)

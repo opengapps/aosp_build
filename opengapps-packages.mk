@@ -38,7 +38,6 @@ TVGAPPS_PRODUCT_PACKAGES += \
 
 # TvMini
 TVGAPPS_PRODUCT_PACKAGES += \
-    AndroidMediaShell \
     AtvRemoteService \
     AtvWidget \
     Backdrop \
@@ -111,7 +110,7 @@ ifneq ($(filter 28,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     DigitalWellbeing \
     MarkupGoogle \
-    SoundPicker
+    GoogleSoundPicker
 endif
 
 ifneq ($(filter micro,$(TARGET_GAPPS_VARIANT)),) # require at least micro
@@ -211,11 +210,10 @@ endif # end micro
 endif # end nano
 
 ifneq ($(filter tvstock,$(TARGET_GAPPS_VARIANT)),)
-GAPPS_FORCE_WEBVIEW_OVERRIDES := true
 TVGAPPS_PRODUCT_PACKAGES += \
+    AndroidMediaShell \
     talkback \
     VideosPano \
-    Music2Pano \
     PlayGamesPano \
     YouTubeLeanback
 endif # end tvstock
