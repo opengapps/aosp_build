@@ -145,7 +145,6 @@ ifneq ($(filter full,$(TARGET_GAPPS_VARIANT)),) # require at least full
 GAPPS_FORCE_BROWSER_OVERRIDES := true
 GAPPS_PRODUCT_PACKAGES += \
     Books \
-    CloudPrint2 \
     EditorsDocs \
     Drive \
     FitnessPrebuilt \
