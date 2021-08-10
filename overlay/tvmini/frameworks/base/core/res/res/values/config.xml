@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
-** Copyright 2011, The Android Open Source Project
+**
+** Copyright 2017, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -16,26 +17,97 @@
 ** limitations under the License.
 */
 -->
-
-<!-- These resources are around just to allow their values to be customized
-     for different hardware and product builds. -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- For Factory Reset Protection -->
     <string name="config_persistentDataPackageName">com.google.android.gms</string>
 
-    <!--
-       Sets the package names whose certificates should be used to
-       verify location providers are allowed to be loaded.
-    -->
+
+    <!-- Sets the package names whose certificates should be used to
+         verify location providers are allowed to be loaded. -->
     <string-array name="config_locationProviderPackageNames" translatable="false">
         <item>com.google.android.gms</item>
         <item>com.android.location.fused</item>
     </string-array>
 
-    <!-- Sets the Ephemeral Resolver -->
+    <!-- The package name of the default network recommendation app. -->
+    <string name="config_defaultNetworkRecommendationProviderPackage" translatable="false"></string>
+
+    <!-- Sets the Ephemeral Resolver [DO NOT TRANSLATE] -->
     <string-array name="config_ephemeralResolverPackage" translatable="false">
         <item>com.google.android.gms</item>
     </string-array>
 
+    <!-- Default service to enable with accessibility shortcut [DO NOT TRANSLATE] -->
+    <string name="config_defaultAccessibilityService" translatable="false">com.google.android.marvin.talkback/.TalkBackService</string>
+
     <string name="config_dreamsDefaultComponent">com.google.android.backdrop/.Backdrop</string>
+
+    <!-- Colon separated list of package names that should be granted Notification Listener access -->
+    <string name="config_defaultListenerAccessPackages" translatable="false">com.google.android.tvrecommendations</string>
+
+    <!-- The component name, flattened to a string, for the default autofill service
+         to be enabled for a user. This service must be trusted, as it can be activated
+         without explicit consent of the user. If no autofill service with the
+          specified name exists on the device, autofill will be disabled by default.
+    -->
+    <string name="config_defaultAutofillService" translatable="false">com.google.android.gms/.autofill.service.AutofillService</string>
+
+    <!-- Package of the unbundled tv remote service which can connect to tv remote provider -->
+    <string translatable="false" name="config_tvRemoteServicePackage">com.google.android.tv.remote.service</string>
+
+    <!-- The list of IMEs which should be disabled until used.
+         This function suppresses update notifications for these pre-installed apps.
+         We need to set this configuration carefully that they should not have functionarities
+         other than "IME" or "Spell Checker". In InputMethodManagerService,
+         the listed IMEs are disabled until used when all of the following conditions are met.
+         1. Not selected as an enabled IME in the Settings
+         2. Not selected as a spell checker in the Settings
+         3. Installed
+         4. A pre-installed IME
+         5. Not enabled
+         And the disabled_until_used state for an IME is released by InputMethodManagerService
+         when the IME is selected as an enabled IME. -->
+    <string-array name="config_disabledUntilUsedPreinstalledImes" translatable="false">
+        <item>com.google.android.inputmethod.latin</item>
+        <item>com.google.android.apps.inputmethod.hindi</item>
+        <item>com.google.android.apps.inputmethod.zhuyin</item>
+        <item>com.google.android.inputmethod.japanese</item>
+        <item>com.google.android.inputmethod.korean</item>
+        <item>com.google.android.inputmethod.pinyin</item>
+      </string-array>
+
+    <!-- An array of packages which can listen for notifications on low ram devices. -->
+    <string-array translatable="false" name="config_allowedManagedServicesOnLowRamDevices">
+        <item>com.google.android.tvrecommendations</item>
+    </string-array>
+
+    <!-- Package name of the required service extension package. -->
+    <string name="config_servicesExtensionPackage" translatable="false">com.google.android.ext.services</string>
+
+    <!-- The name of the package that will hold the assistant role by default. -->
+    <string name="config_defaultAssistant" translatable="false">com.google.android.katniss</string>
+
+    <!-- Colon separated list of package names that should be granted DND access -->
+    <string name="config_defaultDndAccessPackages" translatable="false">com.google.android.gms</string>
+
+    <!-- Flag indicating which package name can access DeviceConfig table -->
+    <string name="config_deviceConfiguratorPackageName" translatable="false">com.google.android.gms</string>
+
+    <!-- The component name for the default profile supervisor, which can be set as a profile owner
+         even after user setup is complete. The defined component should be used for supervision purposes
+         only. The component must be part of a system app. -->
+    <string name="config_defaultSupervisionProfileOwnerComponent" translatable="false">com.google.android.gms/.kids.account.receiver.ProfileOwnerReceiver</string>
+
+    <string-array name="config_integrityRuleProviderPackages" translatable="false">
+      <item>com.android.vending</item>
+      <item>com.google.android.gms</item>
+    </string-array>
+
+    <!-- The set of system packages on device that are queryable regardless of the contents of their
+     manifest. -->
+    <string-array name="config_forceQueryablePackages" translatable="false">
+        <item>com.android.settings</item>
+        <item>com.google.android.gms</item>
+        <item>com.android.vending</item>
+    </string-array>
 </resources>
