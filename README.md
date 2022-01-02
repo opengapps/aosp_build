@@ -73,7 +73,7 @@ $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
 **4. Install git LFS and pull in all dependencies**
 
 ```bash
-# More info: https://github.com/git-lfs/git-lfs/blob/master/INSTALLING.md
+# More info: https://github.com/git-lfs/git-lfs/blob/main/INSTALLING.md
 # Apt/deb
 sudo apt install git-lfs
 # Yum/rpm
