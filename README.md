@@ -48,6 +48,11 @@ and add the following towards the end:
 <project path="vendor/opengapps/sources/x86_64" name="x86_64" clone-depth="1" revision="master" remote="opengapps-gitlab" />
 ```
 
+After modifying your manifest file, sync your local files:
+```bash
+repo sync
+```
+
 **2. Set the desired OpenGapps variant**
 
 In your `device/manufacturer/product/device.mk` file, in the beginning, add:
