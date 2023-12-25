@@ -48,6 +48,13 @@ and add the following towards the end:
 <project path="vendor/opengapps/sources/x86_64" name="x86_64" clone-depth="1" revision="master" remote="opengapps-gitlab" />
 ```
 
+> [!IMPORTANT]  
+> If you are cloning manually, please ensure the urls are from gitlab urls and not github.<br />
+> vendor/openapps/sources/* are from gitlab.<br /><br />
+> Note : If you face below error, please ensure you are using gitlab url<br />
+> "Android.mk: error: ActionsServices: No source files specified"<br />
+> Refer https://github.com/opengapps/aosp_build/issues/231 for more details
+
 **2. Set the desired OpenGapps variant**
 
 In your `device/manufacturer/product/device.mk` file, in the beginning, add:
